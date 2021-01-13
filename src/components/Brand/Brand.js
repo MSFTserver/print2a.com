@@ -123,13 +123,13 @@ class Component extends React.Component {
             xmlns='http://www.w3.org/2000/svg'
             onMouseEnter={() => sounds.hover.play()}
           >
-          <path className={classes.path} d='M 158 81 L 158 42.08 L 260.62 42.08 L 260.62 10 L 158 10' />
-          <path className={classes.path} d='M 295 82 L 295 10 L 370 10 L 370 40.217 L 324.866 40.0632 L 370 81' />
-          <path className={classes.path} d='M 390.651 10.265 L 516.651 10.265 M 432.651 18.265 L 432.065 78.22 M 474.065 86.22 L 378.065 86.22 L 357.549 69.836' />
-          <path className={classes.path} d='M 512.552 94.106 L 512.651 6 M 512.651 6 L 572.678 94.59 M 572.678 6 L 572.678 94.548' />
-          <path className={classes.path} d='M 565.678 10 L 680.101 10 M 624.187 16.723 L 624.423 86.22' />
-          <path className={classes.path} d='M 702.757 2.183 L 763.084 2.511 M 779.597 10.32 L 779.82 35.758 M 763.531 45.13 L 703.204 46.023 M 691.234 54.502 L 691.457 79.94 M 701.944 90.651 L 762.415 89.982' />
-          <path className={classes.path} d='M 803.145 90.023 L 803.145 1.493 L 871.145 1.493 L 871.145 90 M 811.145 37.493 L 863.145 37.493' />
+            <path className={classes.path} d='M 158 81 L 158 42.08 L 260.62 42.08 L 260.62 10 L 158 10' />
+            <path className={classes.path} d='M 295 82 L 295 10 L 370 10 L 370 40.217 L 324.866 40.0632 L 370 81' />
+            <path className={classes.path} d='M 390.651 10.265 L 516.651 10.265 M 432.651 18.265 L 432.065 78.22 M 474.065 86.22 L 378.065 86.22 L 357.549 69.836' />
+            <path className={classes.path} d='M 512.552 94.106 L 512.651 6 M 512.651 6 L 572.678 94.59 M 572.678 6 L 572.678 94.548' />
+            <path className={classes.path} d='M 565.678 10 L 680.101 10 M 624.187 16.723 L 624.423 86.22' />
+            <path className={classes.path} d='M 702.757 2.183 L 763.084 2.511 M 779.597 10.32 L 779.82 35.758 M 763.531 45.13 L 703.204 46.023 M 691.234 54.502 L 691.457 79.94 M 701.944 90.651 L 762.415 89.982' />
+            <path className={classes.path} d='M 803.145 90.023 L 803.145 1.493 L 871.145 1.493 L 871.145 90 M 811.145 37.493 L 863.145 37.493' />
           </svg>
         </Link>
       </h1>

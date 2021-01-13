@@ -1,4 +1,4 @@
-<img width="150" src="./src/images/favicon.png" alt="Soul Extract">
+<img width="150" src="./src/images/NotFound.gif" alt="print2a">
 
 # [print2a.com](https://print2a.com)
 
@@ -15,20 +15,8 @@
   <img src="https://img.shields.io/badge/powered%20by-arwes-02b2d4.svg" alt="arwes" />
 </a>
 
-Alternative Rock injected with electronic and cinematic elements.
-Proud member of the [FiXT](https://www.fixtonline.com) roster.
-
-Check the music out at **[Spotify](https://open.spotify.com/artist/1cEPAqNFhmARDe0HgKOD3h)**.
+Main site for the print2a repo
 
 The website was powered by the **[Arwes](https://arwes.dev)** project.
 
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://RomelPerez.com"><img src="https://avatars2.githubusercontent.com/u/1393135?v=4" width="100px;" alt="Romel Pérez"/><br /><sub><b>Romel Pérez</b></sub></a><br /><a href="#projectManagement-romelperez" title="Project Management">📆</a> <a href="https://github.com/soulextract/soulextract.com/commits?author=romelperez" title="Code">💻</a> <a href="https://github.com/soulextract/soulextract.com/commits?author=romelperez" title="Tests">⚠️</a></td><td align="center"><a href="https://github.com/mario211226"><img src="https://avatars2.githubusercontent.com/u/26547973?v=4" width="100px;" alt="mario211226"/><br /><sub><b>mario211226</b></sub></a><br /><a href="#design-mario211226" title="Design">🎨</a> <a href="#ideas-mario211226" title="Ideas, Planning, & Feedback">🤔</a></td></tr></table>
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors)
-specification.
+This is a fork of the [Soul Extract](https://github.com/soulextract/soulextract.com) Website

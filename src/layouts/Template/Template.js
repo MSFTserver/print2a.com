@@ -5,6 +5,7 @@ import { Layout } from '../../components/Layout';
 import { Background } from '../../components/Background';
 import { App } from '../../components/App';
 import { Popup } from '../../components/Popup';
+import projects from '../../../static/projects.json';
 
 class Component extends React.Component {
   static displayName = 'Template';
@@ -59,36 +60,41 @@ class Component extends React.Component {
     const { show, enterShow, enterAnimationShow } = this.state;
     const { location, classes, layout, background, children } = this.props;
 
-    const isURLContent = ['/filesLatest', '/download', '/charity', '/about'].find(path => {
+    const isURLContent = ['/filesLatest', '/download', '/folderBrowser', '/about'].find(path => {
       return location.pathname.indexOf(path) === 0;
     });
+    if (location.pathname === '/api') {
+      return (
+          JSON.stringify(projects, null, 4)
+      );
+    } else {
+      return (
+        <Layout {...layout}>
+          <Background
+            {...background}
+            animation={{ show, ...background.animation }}
+          >
+            {isURLContent ? <App>{children}</App> : children}
 
-    return (
-      <Layout {...layout}>
-        <Background
-          {...background}
-          animation={{ show, ...background.animation }}
-        >
-          {isURLContent ? <App>{children}</App> : children}
-
-          {!show && (
-            <div className={classes.enterOverlay}>
-              {enterShow && (
-                <Popup
-                  className={classes.enterElement}
-                  ref={ref => (this.enterElement = ref)}
-                  audio={{ silent: true }}
-                  animation={{ independent: true, show: enterAnimationShow }}
-                  message='Print2a.com may contain SpOoPy devices in your region.'
-                  option='Enter At Your Own Risk!'
-                  onOption={this.onEnter}
-                />
-              )}
-            </div>
-          )}
-        </Background>
-      </Layout>
-    );
+            {!show && (
+              <div className={classes.enterOverlay}>
+                {enterShow && (
+                  <Popup
+                    className={classes.enterElement}
+                    ref={ref => (this.enterElement = ref)}
+                    audio={{ silent: true }}
+                    animation={{ independent: true, show: enterAnimationShow }}
+                    message='Print2a.com may contain SpOoPy devices in your region.'
+                    option='Enter At Your Own Risk!'
+                    onOption={this.onEnter}
+                  />
+                )}
+              </div>
+            )}
+          </Background>
+        </Layout>
+      );
+    }
   }
 }
 

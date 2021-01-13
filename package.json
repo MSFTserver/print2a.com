@@ -4,6 +4,7 @@
   "license": "GNUv3",
   "scripts": {
     "lint": "eslint ./src",
+    "lintfix": "eslint ./src --fix",
     "develop": "gatsby develop --host 0.0.0.0 --port 14000",
     "build": "gatsby build",
     "server": "NODE_ENV=production PORT=14000 HOST=127.0.0.1 node server.js"

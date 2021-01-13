@@ -96,7 +96,7 @@ class Download extends React.Component {
                 />
               </Fader>
             </div>
-			<div className={classes.album}>
+            <div className={classes.album}>
               <Fader className={classes.albumCover}>
                 <Link href='https://fanlink.to/_samsara' target='filaments'>
                   <img
