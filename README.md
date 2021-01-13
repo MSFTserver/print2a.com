@@ -1,4 +1,4 @@
-<img width="150" src="./src/images/NotFound.gif" alt="print2a">
+<img width="550" src="./src/images/NotFound.gif" alt="print2a">
 
 # [print2a.com](https://print2a.com)
 
