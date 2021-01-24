@@ -24,7 +24,7 @@ class Download extends React.Component {
       <Main className={classes.root}>
         <div>
           <h1><Text>Alternative Download Links</Text></h1>
-          <p><Link href='http://dropbox.print2a.com' target='dropbox'>Dropbox</Link></p>
+          <p><Link href='http://dropbox.print2a.com' target='dropbox'>Dropbox (includes individual files repo)</Link></p>
           <p><Link href='http://drive.print2a.com' target='drive'>Google Drive</Link></p>
           <p><Link href='http://mega.print2a.com' target='megaupload'>Mega Upload</Link></p>
           <p><Link href='http://lbry.print2a.com' target='lbry'>lbry</Link></p>
