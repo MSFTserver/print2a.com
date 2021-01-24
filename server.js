@@ -12,7 +12,6 @@ const app = express();
 app.use(helmet());
 app.use(morgan('common'));
 app.use('/',express.static('public'));
-app.use('/ftp', express.static('public'), serveIndex('public', {'icons': true}))
 
 app.listen(port, host, error => {
   if (error) throw error;
