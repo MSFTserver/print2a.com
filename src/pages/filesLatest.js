@@ -28,20 +28,8 @@ class FilesLatest extends React.Component {
       <Main className={classes.root}>
         <Secuence stagger>
           <header>
-            <h1><Text>Latest Files</Text></h1>
+            <h1><Text>COMING SOON</Text></h1>
           </header>
-          {latestPosts.map((post, index) => (
-            <Post
-              key={index}
-              audio={{ silent: index > 4 }}
-              data={{ ...post, id: 'post' + index }}
-            />
-          ))}
-          <p className={classes.seeMore}>
-            <Text>See more at</Text>
-            {' '}
-            <Link href='/download' target='facebook'><Text>Download Section</Text></Link>
-          </p>
         </Secuence>
       </Main>
     );

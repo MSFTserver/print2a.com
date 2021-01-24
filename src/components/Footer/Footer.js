@@ -6,7 +6,6 @@ import anime from 'animejs';
 
 import { getViewportRange } from '../../tools/viewport';
 import { Secuence } from '../Secuence';
-import { SocialLinks } from '../SocialLinks';
 import { Legal } from '../Legal';
 
 class Component extends React.PureComponent {
@@ -315,11 +314,6 @@ class Component extends React.PureComponent {
         </svg>
         <div className={classes.content}>
           <Secuence animation={{ show, independent: true }}>
-            <SocialLinks
-              className={classes.socialLinks}
-              itemClassName={classes.socialLinksItem}
-              animateY={false}
-            />
             <Legal
               className={classes.legal}
             />

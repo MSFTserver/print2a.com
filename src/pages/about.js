@@ -10,7 +10,7 @@ import { Secuence } from '../components/Secuence';
 import joshMullisImageURL from '../images/josh-mullis.jpg';
 
 const styles = theme => ({
-  root: {}
+  root: {textAlign:'center'},
 });
 
 class About extends React.Component {
@@ -26,32 +26,40 @@ class About extends React.Component {
         <article>
           <Secuence stagger>
             <header>
-              <h1><Text>About Soul Extract</Text></h1>
+              <h1><Text>Print2a</Text></h1>
             </header>
-            <p><Text>Cerebral. Beautiful. Violent. Soul Extract taps into a wealth of human emotions and experiences to generate a listening space that is as intense and unpredictable as life itself. The highly personal inspiration for Soul Extract’s creations gives every song an invigorating level of creative clarity, and the artist’s willingness to smash through genre barriers puts him at the forefront of modern music.</Text></p>
+            <p><Text>This is a collection of 3D Printed weaponry. These files have been collected across various repositories to bring them to one easy to find organized place. some repos include fosscad, AWCY?, det_disp and other sources far and wide!</Text></p>
+            <h2><Text>Donate</Text></h2>
+            <div style={{lineHeight:"0px"}}>
+            <p><Text>PayPal:</Text></p><p><Link href="http://donate.print2a.com" target="PayPal">http://donate.print2a.com</Link></p><br style={{lineHeight:'20px'}}></br>
+            <p><Text>BTC Address</Text></p><p><Text>34CnFqMvsrmhZA1kDyV6iD91GV9Vn3dd94</Text></p><br style={{lineHeight:'20px'}}></br>
+            <p><Text>XLM Address</Text></p><p><Text>GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37</Text></p><br style={{lineHeight:'10px'}}></br>
+            <p><Text>XLM Must be sent with memo ID below for me to receive</Text></p><br style={{lineHeight:'10px'}}></br>
+            <p><Text>XLM Memo ID</Text></p><p><Text>3556957568</Text></p><br style={{lineHeight:'20px'}}></br>
+            </div>
             <Fader>
-              <img src={joshMullisImageURL} alt="Josh Mullis's photo" />
+            <h2><Text>Github?</Text></h2>
+            <p><Text>this repo has been removed from github due to issues with the large files and my ever increasing bandwidth from you CHADS cloning the repo, due to some GitHub oversights everytime some clones or downloads this repo it adds to my bandwidth, additionally everytime the cloned repo is changed on the user end it adds to the Main repo owners bandwidth and storage wich was hell to find out so alas this repo is gone from github.</Text></p>
             </Fader>
-            <p><Text>Although Soul Extract’s stylistic approach fits within the broad scope of electronic rock, labels can’t begin to describe the exploratory, borderline progressive nature of the songs themselves. Josh Mullis, the architect behind Soul Extract’s elaborate compositions, brings a deconstructive mindset to his craft, tearing apart genres and fusing their most compelling elements back together to build calculated and highly detailed tracks.</Text></p>
             <Link
-              href='https://fanlink.to/circalgorithm'
-              target='circalgorithm'
+              href='#'
+              target='github'
               style={{ display: 'block' }}
             >
               <Fader style={{ display: 'block' }}>
                 <img
-                  src='/images/circadian-algorithm.jpg'
-                  alt='Soul Extract Circadian Algorithm album'
+                  src='/images/NotFound.gif'
+                  alt='print2a'
                   style={{ width: '100%', maxWidth: '400px' }}
                 />
               </Fader>
             </Link>
-            <Fader>
-              <p>This analytical approach to Soul Extract began to take shape in 2013, and after years spent synthesizing the sounds of metal, electronic, and orchestral music, the artist unleashed his fiery debut album, <em>Circadian Algorithm</em>. Loaded wall-to-wall with emotive vocals and explosive instrumental sections, the album has laid the foundation for a developing career with an upward trajectory.</p>
-              <p>Mullis’ passion for music began at a young age, and he has traditionally pulled from deeply personal events for his creative stimulus. Finding escape from a family struggles by picking up a guitar as a teenager, Mullis discovered those early creative efforts were able to carry him through unpredictable times. As an adult, a motivating force for his music rests within humanitarian endeavors, as Mullis donates proceeds from Soul Extract to New Day Foster Home (<Link href='http://www.newdayfosterhome.com' target='newdayfosterhome'>www.newdayfosterhome.com</Link>), a charity that supported the health of his adopted daughter at an early age.</p>
-              <p>For Mullis, music is an indescribable force capable of sparking intense emotion, and this force is the essence of an artist in its purest form. As the project name suggests, Soul Extract is Josh Mullis’ unaltered expression of himself, and his passionate approach to songwriting shines through on every track he produces.</p>
-              <p style={{ margin: 0 }}>Source: <Link href='https://www.fixtonline.com/label/artists/soul-extract' target='about'>fixtonline.com/label/artists/soul-extract</Link>.</p>
-            </Fader>
+            <h2><Text>License</Text></h2>
+
+            <li> These files are released open source.</li>
+            <li> Fuck COPYRIGHTS.</li><br style={{lineHeight:'20px'}}></br>
+            <h2><Text>Site Admin</Text></h2>
+            <li>HostsServer (Formerly MSFTserver)</li>
           </Secuence>
         </article>
       </Main>

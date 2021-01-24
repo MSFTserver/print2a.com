@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '../tools/withStyles';
 import { Main } from '../components/Main';
 import { Secuence } from '../components/Secuence';
+import { Text } from '../components/Text'
 import projects from '/static/projects.json';
 
 const styles = theme => ({
@@ -20,11 +21,11 @@ class FolderBrowser extends React.Component {
 
     return (
       <Main className={classes.root}>
-        <pre>
-          <Secuence stagger>
-            {JSON.stringify(projects, null, 4)}
-          </Secuence>
-        </pre>
+        <Secuence stagger>
+          <header>
+            <h1><Text>COMING SOON</Text></h1>
+          </header>
+        </Secuence>
       </Main>
     );
   }

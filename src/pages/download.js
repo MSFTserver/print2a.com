@@ -9,38 +9,7 @@ import { Fader } from '../components/Fader';
 import { Link } from '../components/Link';
 
 const styles = theme => ({
-  root: {},
-  albums: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-  album: {
-    padding: [0, 0, 20],
-    width: '100%'
-  },
-  albumCover: {
-    display: 'block',
-    margin: [0, 0, 20],
-    width: '100%',
-
-    '& img': {
-      margin: 0,
-      width: '100%',
-      maxWidth: '100%'
-    }
-  },
-  albumFrame: {
-    display: 'block',
-    width: '100%'
-  },
-
-  '@media screen and (min-width: 768px)': {
-    album: {
-      padding: 10,
-      width: '50%'
-    }
-  }
+  root: {}
 });
 
 class Download extends React.Component {
@@ -53,71 +22,15 @@ class Download extends React.Component {
 
     return (
       <Main className={classes.root}>
-        <Secuence stagger>
-          <h1><Text>Download</Text></h1>
-          <div className={classes.albums}>
-            <div className={classes.album}>
-              <Fader className={classes.albumCover}>
-                <Link href='https://fanlink.to/circalgorithm' target='circalgorithm'>
-                  <img
-                    alt='Soul Extract Circadian Algorithm album cover'
-                    src='/images/circadian-algorithm.jpg'
-                  />
-                </Link>
-              </Fader>
-              <Fader className={classes.albumFrame}>
-                <iframe
-                  src='https://open.spotify.com/embed/album/0dQsfbQTdfy0yP8QavV91a'
-                  width='100%'
-                  height='715'
-                  frameBorder='0'
-                  allowtransparency='true' // eslint-disable-line react/no-unknown-property
-                  allow='encrypted-media'
-                />
-              </Fader>
-            </div>
-            <div className={classes.album}>
-              <Fader className={classes.albumCover}>
-                <Link href='https://fanlink.to/filaments' target='filaments'>
-                  <img
-                    alt='Soul Extract Filaments album cover'
-                    src='/images/filaments.jpg'
-                  />
-                </Link>
-              </Fader>
-              <Fader className={classes.albumFrame}>
-                <iframe
-                  src='https://open.spotify.com/embed/album/11GtV6Ku65tT4HaAQEQruk'
-                  width='100%'
-                  height='930'
-                  frameBorder='0'
-                  allowtransparency='true' // eslint-disable-line react/no-unknown-property
-                  allow='encrypted-media'
-                />
-              </Fader>
-            </div>
-            <div className={classes.album}>
-              <Fader className={classes.albumCover}>
-                <Link href='https://fanlink.to/_samsara' target='filaments'>
-                  <img
-                    alt='Soul Extract Samsara album cover'
-                    src='/images/Soul_Extract_Samsara.jpg'
-                  />
-                </Link>
-              </Fader>
-              <Fader className={classes.albumFrame}>
-                <iframe
-                  src='https://open.spotify.com/embed/album/0ngNDxEbVNh3EUHu205YyW'
-                  width='100%'
-                  height='930'
-                  frameBorder='0'
-                  allowtransparency='true' // eslint-disable-line react/no-unknown-property
-                  allow='encrypted-media'
-                />
-              </Fader>
-            </div>
-          </div>
-        </Secuence>
+        <div>
+          <h1><Text>Alternative Download Links</Text></h1>
+          <p><Link href='http://dropbox.print2a.com' target='dropbox'>Dropbox</Link></p>
+          <p><Link href='http://drive.print2a.com' target='drive'>Google Drive</Link></p>
+          <p><Link href='http://mega.print2a.com' target='megaupload'>Mega Upload</Link></p>
+          <p><Link href='http://lbry.print2a.com' target='lbry'>lbry</Link></p>
+          <h1><Text>Rsync Enabled:</Text></h1>
+          <p><Text>beta.print2a.com:1776</Text></p>
+        </div>
       </Main>
     );
   }
