@@ -26,13 +26,6 @@ const Component = ({ children }) => (
       <meta property='og:url' content={meta.url} />
       <meta property='og:image' content={meta.seoImage} />
 
-      <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:title' content={meta.title} />
-      <meta name='twitter:description' content={meta.description} />
-      <meta name='twitter:site' content={meta.twitter} />
-      <meta name='twitter:creator' content={meta.twitter} />
-      <meta name='twitter:image' content={meta.seoImage} />
-
       <meta name='mobile-web-app-capable' content='yes' />
       <meta name='theme-color' content={meta.color} />
       <meta name='apple-mobile-web-app-capable' content='yes' />

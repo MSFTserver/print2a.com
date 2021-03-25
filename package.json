@@ -12,6 +12,8 @@
   "dependencies": {
     "@helcor/window-sizes": "^1.0.0-beta.8",
     "animejs": "^3.0.1",
+    "chonky": "^2.1.0",
+    "chonky-icon-fontawesome": "^2.1.0",
     "classnames": "^2.2.6",
     "express": "^4.16.4",
     "gatsby": "^2.31.1",
@@ -24,6 +26,7 @@
     "hoist-non-react-statics": "^3.3.0",
     "howler": "^2.1.1",
     "morgan": "^1.9.1",
+    "noty": "^3.2.0-beta",
     "polished": "^2.3.1",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",

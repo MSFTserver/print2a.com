@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Layout } from '../../components/Layout';
 import { Background } from '../../components/Background';
 import { App } from '../../components/App';
-import projects from '../../../static/projects.json';
 
 class Component extends React.Component {
   static displayName = 'Template';
@@ -54,7 +53,7 @@ class Component extends React.Component {
     const { show, enterShow } = this.state;
     const { location, classes, layout, background, children } = this.props;
 
-    const isURLContent = ['/filesLatest', '/download', '/folderBrowser', '/about'].find(path => {
+    const isURLContent = ['/latest', '/links', '/browse', '/about'].find(path => {
       return location.pathname.indexOf(path) === 0;
     });
       return (

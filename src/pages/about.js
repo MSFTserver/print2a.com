@@ -7,10 +7,13 @@ import { Main } from '../components/Main';
 import { Text } from '../components/Text';
 import { Fader } from '../components/Fader';
 import { Secuence } from '../components/Secuence';
-import joshMullisImageURL from '../images/josh-mullis.jpg';
 
 const styles = theme => ({
-  root: {textAlign:'center'},
+  root: {
+    textAlign: 'center',
+    flexDirection: 'column',
+    overflow: 'hidden scroll'
+  }
 });
 
 class About extends React.Component {
@@ -32,10 +35,10 @@ class About extends React.Component {
             <h2><Text>Donate</Text></h2>
             <div style={{lineHeight:"0px"}}>
             <p><Text>PayPal:</Text></p><p><Link href="http://donate.print2a.com" target="PayPal">http://donate.print2a.com</Link></p><br style={{lineHeight:'20px'}}></br>
-            <p><Text>BTC Address</Text></p><p><Text>34CnFqMvsrmhZA1kDyV6iD91GV9Vn3dd94</Text></p><br style={{lineHeight:'20px'}}></br>
-            <p><Text>XLM Address</Text></p><p><Text>GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37</Text></p><br style={{lineHeight:'10px'}}></br>
+            <p><Text>BTC Address:</Text></p><p><Text>34CnFqMvsrmhZA1kDyV6iD91GV9Vn3dd94</Text></p><br style={{lineHeight:'20px'}}></br>
+            <p><Text>XLM Address:</Text></p><p><Text>GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37</Text></p><br style={{lineHeight:'10px'}}></br>
             <p><Text>XLM Must be sent with memo ID below for me to receive</Text></p><br style={{lineHeight:'10px'}}></br>
-            <p><Text>XLM Memo ID</Text></p><p><Text>3556957568</Text></p><br style={{lineHeight:'20px'}}></br>
+            <p><Text>XLM Memo ID:</Text></p><p><Text>3556957568</Text></p><br style={{lineHeight:'20px'}}></br>
             </div>
             <Fader>
             <h2><Text>Github?</Text></h2>

@@ -3,7 +3,7 @@ import { SCHEME_EXPAND } from './Menu.constants';
 const styles = theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
     margin: [0, 'auto'],
@@ -46,6 +46,9 @@ const styles = theme => ({
   },
 
   '@media (min-width: 768px)': {
+    root:{
+      flexDirection: 'row',
+    },
     item: {
       display: 'block'
     },
