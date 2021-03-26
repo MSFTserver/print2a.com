@@ -20,7 +20,7 @@ import { FullFileBrowser,
 import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
-const print2aApiHost = "localhost";
+const print2aApiHost = "beta.print2a.com";
 const print2aApiPort = "5757";
 const print2aApiEndpoint = `http://${print2aApiHost}:${print2aApiPort}`;
 
@@ -30,21 +30,31 @@ const ChonkyBrowse = () => {
   const [currentPath, setCurrentPath] = useState(print2aApiEndpoint+"/print2a");
   const [folderChain, setFolderChain] = useState([
     {
-      id: "/",
-      name: "/",
-      isDir: true
+      id:"print2a",
+      name:"print2a",
+      mode:"0777",
+      size:4096,
+      sizeHuman:"4 KB",
+      username:65534,
+      isDir:true,
+      birthtime:"2021-01-23T00:16:28.872Z",
+      mtime:"2021-03-18T04:22:12.981Z",
+      childrenCount:12,
+      path:"../../repo/"
     }
   ]);
 
   // Define a handler for "open file" action
   const handleFileOpen = node => {
-    if (node.id == "mouse_click_file" && node.payload.clickType == "double") {
-        console.log(node.payload)
-        let folder = node.payload.file
-      if (folder.isDir) {
-        setCurrentPath(`${currentPath}/${folder.name}`);
-      } else {
-        setCurrentPath(`${currentPath}${folder.path}${folder.name}`);
+    if (node.id == "open_files" && node.payload.files[0].isDir) {
+        let folder = node.payload.files[0]
+        console.log(node)
+        console.log(node.payload.files)
+        console.log(`${print2aApiEndpoint}/${folder.id}`)
+        setCurrentPath(`${print2aApiEndpoint}/${folder.id}`);
+      } else if (node.id == "open_files" && !node.payload.files[0].isDir) {
+        let folder = node.payload.files[0].id
+        setCurrentPath(`${print2aApiEndpoint}${folder.path}${folder.id}`);
         new Noty({
           text: `Sending file: ${print2aApiEndpoint}/print2a/${folder.name}`,
           type: "notification",
@@ -52,7 +62,6 @@ const ChonkyBrowse = () => {
           timeout: 3000
         }).show();
       }
-    }
   };
 
   const formatApiResponse = apiResponse =>
@@ -76,17 +85,27 @@ const ChonkyBrowse = () => {
         })
         .then(
           response => {
+            let folderChainArray = [];
             const formattedResponse = formatApiResponse(response);
+            //console.log(folderChain)
             setCurrentNodes(formattedResponse);
-            let testFolderChain = currentPath.replace(print2aApiEndpoint,"").substring(1).split("/");
-            console.log(testFolderChain)
-            setFolderChain([
-              {
-                id: currentPath,
-                name: testFolderChain.pop(),
-                isDir: true
+            let readableFolderChain = currentPath.replace(print2aApiEndpoint,"").substring(1);
+            let currentFolderChain = formattedResponse
+            for (let i in readableFolderChain.split("/")){
+              let newFolderID = 0;
+              if(readableFolderChain.split("/").length-1 !== Number(i)){
+                newFolderID = readableFolderChain.split("/").slice(0,Number(i)+1).join("/")
+              } else {
+                newFolderID = readableFolderChain
               }
-            ]);
+              folderChainArray.push({
+                id: newFolderID,
+                name: readableFolderChain.split("/")[i],
+                isDir: true
+              })
+            }
+            setFolderChain(folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i));
+            console.log("FOLDER CHAIN: ",folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i))
           },
           error => {
             console.log(error);
