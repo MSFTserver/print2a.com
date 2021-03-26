@@ -32,15 +32,7 @@ const ChonkyBrowse = () => {
     {
       id:"print2a",
       name:"print2a",
-      mode:"0777",
-      size:4096,
-      sizeHuman:"4 KB",
-      username:65534,
       isDir:true,
-      birthtime:"2021-01-23T00:16:28.872Z",
-      mtime:"2021-03-18T04:22:12.981Z",
-      childrenCount:12,
-      path:"../../repo/"
     }
   ]);
 
@@ -48,9 +40,6 @@ const ChonkyBrowse = () => {
   const handleFileOpen = node => {
     if (node.id == "open_files" && node.payload.files[0].isDir) {
         let folder = node.payload.files[0]
-        console.log(node)
-        console.log(node.payload.files)
-        console.log(`${print2aApiEndpoint}/${folder.id}`)
         setCurrentPath(`${print2aApiEndpoint}/${folder.id}`);
       } else if (node.id == "open_files" && !node.payload.files[0].isDir) {
         let folder = node.payload.files[0].id
@@ -105,7 +94,6 @@ const ChonkyBrowse = () => {
               })
             }
             setFolderChain(folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i));
-            console.log("FOLDER CHAIN: ",folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i))
           },
           error => {
             console.log(error);
