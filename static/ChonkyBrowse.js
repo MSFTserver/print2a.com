@@ -42,14 +42,14 @@ const ChonkyBrowse = () => {
         let folder = node.payload.files[0]
         setCurrentPath(`${print2aApiEndpoint}/${folder.id}`);
       } else if (node.id == "open_files" && !node.payload.files[0].isDir) {
-        let folder = node.payload.files[0].id
-        setCurrentPath(`${print2aApiEndpoint}${folder.path}${folder.id}`);
+        let folder = node.payload.files[0]
         new Noty({
-          text: `Sending file: ${print2aApiEndpoint}/print2a/${folder.name}`,
+          text: `Sending file: ${print2aApiEndpoint}/${folder.id}`,
           type: "notification",
           theme: "relax",
           timeout: 3000
         }).show();
+        window.open(`${print2aApiEndpoint}/${folder.id}`, "_blank")
       }
   };
 
