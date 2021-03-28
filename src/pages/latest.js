@@ -24,9 +24,16 @@ class Latest extends React.Component {
     return (
       <Main className={classes.root}>
         <Secuence stagger>
-          <header>
-            <h1><Text>COMING SOON</Text></h1>
-          </header>
+        <header>
+          <h1><Text>Latest Files</Text></h1>
+        </header>
+        {latest.map((file, index) => (
+          <Post
+            key={index}
+            audio={{ silent: index > 4 }}
+            data={{ ...file, id: 'file' + index }}
+          />
+        ))}
         </Secuence>
       </Main>
     );

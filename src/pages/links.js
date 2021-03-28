@@ -28,7 +28,19 @@ class Links extends React.Component {
           <p><Link href='http://drive.print2a.com' target='drive'><Text>Google Drive</Text></Link></p>
           <p><Link href='http://mega.print2a.com' target='megaupload'><Text>Mega Upload</Text></Link></p>
           <p><Link href='http://lbry.print2a.com' target='lbry'><Text>lbry</Text></Link></p>
-          <p><Text>Rsync Enabled: beta.print2a.com:1776</Text></p>
+          <p><Text>Rsync Enabled: print2a.com:1776/print2a</Text></p>
+          <Fader>
+          <h1><Text>rsync?</Text></h1>
+          <p><Text>rsync is a utility for efficiently transferring and synchronizing files between a computer and an external hard drive and across networked computers by comparing the modification times and sizes of files.</Text></p>
+          <p><Link href='https://linux.die.net/man/1/rsync' target='rsync'>Read More About rsync</Link></p>
+          <h3><Text>Install:</Text></h3>
+          <p><Text># yum install rsync (On Red Hat based Linux systems)</Text></p>
+          <p><Text># apt-get install rsync (On Debian based Linux systems)</Text></p>
+          <p><Text>Windows Install (!ADV USERS!) :</Text></p>
+          <p><Text>Download and install <Link href="https://www.cygwin.com/">Cygwin</Link></Text></p>
+          <p><Text>Copy Files From Print2a Server:</Text></p>
+          <p><Text># rsync -avzh rsync://beta.print2a.com:1776/print2a /Copy-To-This/Dir</Text></p>
+          </Fader>
         </div>
         <div className='communityLinks'>
         <h1><Text>Communities</Text></h1>
@@ -36,7 +48,7 @@ class Links extends React.Component {
         <p><Link href='https://fosscad.org/fc/chat/' target='fosscad'><Text>fosscad | IRC |</Text></Link></p>
         <p><Link href='https://matrix.to/#/#_oftc_#fosscad:matrix.org?via=matrix.org' target='fosscad'><Text>fosscad | Matrix Bridge to IRC |</Text></Link></p>
         <p><Link href='https://chat.deterrencedispensed.com/home' target='det-disp'><Text>Deterrence Dispensed | Rocket Chat |</Text></Link></p>
-        <p><Text>Add Your Community Here</Text></p>
+        <p><Text>Add Your Community Here Contact HostsServer (Formerly MSFTserver)</Text></p>
         </div>
       </Main>
     );

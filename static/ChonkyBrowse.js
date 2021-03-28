@@ -20,7 +20,7 @@ import { FullFileBrowser,
 import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
-const print2aApiHost = "beta.print2a.com";
+const print2aApiHost = "print2a.com";
 const print2aApiPort = "5757";
 const print2aApiEndpoint = `http://${print2aApiHost}:${print2aApiPort}`;
 
