@@ -22,7 +22,7 @@ setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
 const print2aApiHost = "print2a.com";
 const print2aApiPort = "5757";
-const print2aApiEndpoint = `https://${print2aApiHost}:${print2aApiPort}`;
+const print2aApiEndpoint = `http://${print2aApiHost}:${print2aApiPort}`;
 
 // Render the file browser
 const ChonkyBrowse = () => {
