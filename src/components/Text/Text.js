@@ -109,8 +109,7 @@ class Component extends React.PureComponent {
       // progressLength(n) = progressDuration(ms)
       // totalLength(n) = totalDuration(ms)
       // Then:
-      const newLength = Math.round((timeProgress * children.length) / duration);
-
+      const newLength = Math.round((timeProgress * (children.length+0.1)) / duration);
       const newText = children.substring(0, newLength);
       this.setOverlayText(newText);
 

@@ -5,7 +5,7 @@ module.exports = {
   },
   color: {
     accent: 0.2,
-    alpha: 0.5,
+    alpha: 0.8,
     primary: {
       dark: '#bbbbbb',
       main: '#eeeeee',
@@ -13,29 +13,29 @@ module.exports = {
     },
     secondary: {
       dark: '#19a0b3',
-      main: '#27e1fa',
-      light: '#7eecfb'
+      main: '#29a86d',
+      light: '#fb7e7e'
     },
     tertiary: {
       dark: '#b5a005',
-      main: '#fae127',
-      light: '#feec67'
+      main: '#18d736',
+      light: '#a4f48e'
     },
     heading: {
-      main: '#eeeeee'
+      main: '#18d736'
     },
     text: {
-      main: '#cccccc'
+      main: '#2a9d00'
     },
     link: {
       dark: '#55cbd0',
-      main: '#87f7fc',
-      light: '#aff3f6'
+      main: '#b91919',
+      light: '#f6afaf'
     },
     background: {
       dark: '#000000',
-      main: '#02161a',
-      light: '#043b3b'
+      main: '#6f0000',
+      light: '#ff0000'
     }
   },
   animation: {

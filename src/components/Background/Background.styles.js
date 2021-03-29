@@ -21,7 +21,7 @@ const styles = ({ color }) => ({
   light1: {
     composes: '$positioned',
     zIndex: 0,
-    backgroundImage: 'radial-gradient(' + rgba(color.secondary.main, 0.1) + ' 25%, transparent)',
+    backgroundImage: 'radial-gradient(' + rgba(color.background.main, 0.1) + ' 25%, transparent)',
     opacity: props => props.energy.entered ? 1 : 0
   },
   line1Container: {
@@ -48,7 +48,7 @@ const styles = ({ color }) => ({
     opacity: props => props.energy.exited ? 0 : 1
   },
   dotLine: {
-    stroke: color.background.light,
+    stroke: color.background.main,
     strokeWidth: 1
   },
   line2: {},
@@ -64,8 +64,8 @@ const styles = ({ color }) => ({
   },
   circuitLineLight: {
     fill: 'none',
-    stroke: color.secondary.main,
-    strokeWidth: 1,
+    stroke: color.link.main,
+    strokeWidth: 5,
     opacity: 0
   },
   circuitDot: {
