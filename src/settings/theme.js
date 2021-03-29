@@ -29,8 +29,8 @@ module.exports = {
     },
     link: {
       dark: '#55cbd0',
-      main: '#b91919',
-      light: '#f6afaf'
+      main: '#18d736',
+      light: '#a4f48e'
     },
     background: {
       dark: '#000000',
