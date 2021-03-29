@@ -26,13 +26,14 @@ class Links extends React.Component {
           <h1><Text>rsync</Text></h1>
           <p><Text>rsync is constantly in sync with the current repo available and is the best way to acquire all the files and keep them updated as new projects are added to save on bandwidth for you and myself included, but as a caveat I have also provided alternative download links that are updated on the first of every month.</Text></p>
           <p><Text>Rsync: print2a.com:1776/print2a</Text></p>
-          <p><Text>rsync is a utility for efficiently transferring and synchronizing files between a computer and an external hard drive and across networked computers by comparing the modification times and sizes of files.</Text></p>
+          <p><Text>rsync is a utility for efficiently transfering and synchronizing files between a computer and an external hard drive and across networked computers by comparing the modification times and sizes of files.</Text></p>
           <p><Link href='https://linux.die.net/man/1/rsync' target='rsync'><Text>Read More About rsync</Text></Link></p>
           <h3><Text>Install:</Text></h3>
           <p><Text># yum install rsync (On Red Hat based Linux systems)</Text></p>
           <p><Text># apt-get install rsync (On Debian based Linux systems)</Text></p>
           <p><Text>Windows Install (!ADV USERS!) :</Text></p>
           <p><Text>Download and install&nbsp;&nbsp;</Text><Link href='https://www.cygwin.com/' target='Cygwin'><Text>Cygwin</Text></Link></p>
+          <p><Text>the package selection will be set to "default". You need to click on the top-level circular arrow picture until it says "Full" youll need this for rsync.</Text></p>
           <p><Text>Copy Files From Print2a Server:</Text></p>
           <p><Text># rsync -avzh rsync://print2a.com:1776/print2a /Copy-To-This/Dir</Text></p>
           <Fader>
