@@ -27,11 +27,12 @@ class About extends React.Component {
           <p><Text>This is a collection of 3D Printed weaponry. These files have been collected across various repositories to bring them to one easy to find organized place. some repos include fosscad, AWCY?, det_disp and other sources far and wide!</Text></p>
           <h2><Text>Donate</Text></h2>
           <p><Text>if you like the site and what i have put together, please consider donating to help with server costs to keep this site running, anything helps as costs are quite low right now.</Text></p>
-          <div style={{lineHeight:"0px"}}>
+          <div style={{lineHeight:"5px"}}>
           <p><Text>PayPal:</Text></p><p><Link href="http://donate.print2a.com" target="PayPal"><Text>http://donate.print2a.com</Text></Link></p><br style={{lineHeight:'20px'}}></br>
           <p><Text>BTC Address:</Text></p><p><Text>34CnFqMvsrmhZA1kDyV6iD91GV9Vn3dd94</Text></p><br style={{lineHeight:'20px'}}></br>
-          <p><Text>XLM Address:</Text></p><p style={{fontSize:"10px"}}><Text>GDQP2KPQGKIHYJGXNUIYOMHARUARCA7DJT5FO2FFOOKY3B2WSQHG4W37</Text></p><br style={{lineHeight:'10px'}}></br>
-          <p><Text>XLM Must be sent with memo ID below for me to receive</Text></p><br style={{lineHeight:'10px'}}></br>
+          <p><Text>XLM Address (copy both lines):</Text></p><p><Text>GDQP2KPQGKIHYJGXNUIYOMHARU</Text>
+          <br style={{lineHeight:'20px'}}></br><Text>ARCA7DJT5FO2FFOOKY3B2WSQHG4W37</Text></p><br style={{lineHeight:'10px'}}></br>
+          <p><Text>XLM Must be sent with memo ID below</Text></p><br style={{lineHeight:'10px'}}></br>
           <p><Text>XLM Memo ID:</Text></p><p><Text>3556957568</Text></p><br style={{lineHeight:'20px'}}></br>
           </div>
           <Fader>
