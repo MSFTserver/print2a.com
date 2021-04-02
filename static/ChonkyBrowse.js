@@ -49,7 +49,7 @@ const ChonkyBrowse = () => {
       } else if (node.id == "open_files" && !node.payload.files[0].isDir) {
         let folder = node.payload.files[0];
         new Noty({
-          text: `Sending file: ${print2aApiEndpoint}/${folder.id}`,
+          text: `Sending file:<br> ${print2aApiEndpoint}/${folder.id}`,
           type: "notification",
           theme: "relax",
           timeout: 10000
@@ -58,7 +58,7 @@ const ChonkyBrowse = () => {
       } else if (node.id == "download_files" && node.state.selectedFiles[0].isDir) {
         let folder = node.state.selectedFiles[0];
         new Noty({
-          text: `Getting Compressed Files/Folders: ${folder.id.replace(/\//g,"+")}<br><br>Please be patient and remain on the browse page`,
+          text: `Getting Compressed Files/Folders:<br> ${folder.id.replace(/\//g,"+")}<br><br>Please be patient and remain on the browse page`,
           type: "notification",
           theme: "relax",
           timeout: 10000
@@ -119,7 +119,7 @@ const ChonkyBrowse = () => {
                 isDir: true
               })
             }
-            window.history.pushState('NewPage', 'Title', `/browse${currentPath.replace(print2aApiEndpoint,"").replace("/print2a","")}`);
+            window.history.pushState('NewPage', 'Title', `/browse?folder=${currentPath.replace(print2aApiEndpoint,"").replace("/print2a","")}`);
             setFolderChain(folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i));
           },
           error => {
@@ -141,7 +141,7 @@ const ChonkyBrowse = () => {
           response => {
             if (response.status == "COMPLETE"){
               new Noty({
-                text: `Completed if a window does not automatically open you can find the file available for 12 hours here:<br><br> ${response.link}`,
+                text: `Completed<br>if a window does not automatically open you can find the file available for 12 hours here:<br><br> ${response.link}`,
                 type: "notification",
                 theme: "relax",
                 timeout: 10000
