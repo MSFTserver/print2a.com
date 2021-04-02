@@ -38,7 +38,7 @@ class Links extends React.Component {
           <p><Text># rsync -avzh rsync://print2a.com:1776/print2a /Copy-To-This/Dir</Text></p>
           <Fader>
           <h1><Text>Alternative Download Links</Text></h1>
-          <p><Link href='http://dropbox.print2a.com' target='dropbox'><Text>Dropbox (includes individual files repo)</Text></Link></p>
+          <p><Link href='http://dropbox.print2a.com' target='dropbox'><Text>Dropbox</Text></Link></p>
           <p><Link href='http://drive.print2a.com' target='drive'><Text>Google Drive</Text></Link></p>
           <p><Link href='http://mega.print2a.com' target='megaupload'><Text>Mega Upload</Text></Link></p>
           <p><Link href='http://lbry.print2a.com' target='lbry'><Text>lbry</Text></Link></p>

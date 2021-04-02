@@ -89,7 +89,6 @@ class Component extends React.Component {
           <Link
             className={classes.link}
             href={data.link}
-            target='_blank'
             onMouseEnter={() => sounds.hover && energy.entered && sounds.hover.play()}
           >
             <Fader

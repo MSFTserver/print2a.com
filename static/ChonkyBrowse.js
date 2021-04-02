@@ -20,34 +20,60 @@ import { FullFileBrowser,
 import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
-const print2aApiHost = "print2a.com";
+const print2aApiHost = "https://print2a.com";
 const print2aApiPort = "5757";
-const print2aApiEndpoint = `https://${print2aApiHost}:${print2aApiPort}`;
+const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`;
 
 // Render the file browser
 const ChonkyBrowse = () => {
+  let newPath = print2aApiEndpoint+"/print2a";
+  let newChain = {
+    id:"print2a",
+    name:"print2a",
+    isDir:true
+  }
+  if (window.location.search){
+    console.log(window.location.search)
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams.get('folder'))
+    newPath = `${print2aApiEndpoint}/print2a/${urlParams.get('folder')}`;
+  }
   const [currentNodes, setCurrentNodes] = useState([]);
-  const [currentPath, setCurrentPath] = useState(print2aApiEndpoint+"/print2a");
-  const [folderChain, setFolderChain] = useState([
-    {
-      id:"print2a",
-      name:"print2a",
-      isDir:true,
-    }
-  ]);
-
+  const [currentPath, setCurrentPath] = useState(newPath);
+  const [folderChain, setFolderChain] = useState([newChain]);
   // Define a handler for "open file" action
-  const handleFileOpen = node => {
+  const handleFileOpen = async node => {
     if (node.id == "open_files" && node.payload.files[0].isDir) {
         let folder = node.payload.files[0]
         setCurrentPath(`${print2aApiEndpoint}/${folder.id}`);
       } else if (node.id == "open_files" && !node.payload.files[0].isDir) {
-        let folder = node.payload.files[0]
+        let folder = node.payload.files[0];
         new Noty({
           text: `Sending file: ${print2aApiEndpoint}/${folder.id}`,
           type: "notification",
           theme: "relax",
-          timeout: 3000
+          timeout: 10000
+        }).show();
+        window.open(`${print2aApiEndpoint}/${folder.id}`, "_blank")
+      } else if (node.id == "download_files" && node.state.selectedFiles[0].isDir) {
+        let folder = node.state.selectedFiles[0];
+        new Noty({
+          text: `Getting Compressed Files/Folders: ${folder.id.replace(/\//g,"+")}<br><br>Please be patient and remain on the browse page`,
+          type: "notification",
+          theme: "relax",
+          timeout: 10000
+        }).on('afterShow', function() {
+
+        }).show();
+        setCurrentPath(`CREATEZIP/${print2aApiEndpoint}/${folder.id}`);
+        setCurrentPath(`${print2aApiEndpoint}/${folder.id.split("/").slice(0,folder.id.split("/").length - 1).join("/")}`)
+      } else if (node.id == "download_files" && !node.state.selectedFiles[0].isDir) {
+        let folder = node.state.selectedFiles[0]
+        new Noty({
+          text: `Sending file: ${print2aApiEndpoint}/${folder.id}`,
+          type: "notification",
+          theme: "relax",
+          timeout: 10000
         }).show();
         window.open(`${print2aApiEndpoint}/${folder.id}`, "_blank")
       }
@@ -68,7 +94,8 @@ const ChonkyBrowse = () => {
 
   useEffect(() => {
     const getData = async () => {
-      fetch(currentPath)
+      if (!currentPath.startsWith("CREATEZIP")) {
+        fetch(currentPath)
         .then(response => {
           return response.json();
         })
@@ -76,7 +103,6 @@ const ChonkyBrowse = () => {
           response => {
             let folderChainArray = [];
             const formattedResponse = formatApiResponse(response);
-            //console.log(folderChain)
             setCurrentNodes(formattedResponse);
             let readableFolderChain = currentPath.replace(print2aApiEndpoint,"").substring(1);
             let currentFolderChain = formattedResponse
@@ -93,6 +119,7 @@ const ChonkyBrowse = () => {
                 isDir: true
               })
             }
+            window.history.pushState('NewPage', 'Title', `/browse${currentPath.replace(print2aApiEndpoint,"").replace("/print2a","")}`);
             setFolderChain(folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i));
           },
           error => {
@@ -101,10 +128,46 @@ const ChonkyBrowse = () => {
               text: error.message,
               type: "error",
               theme: "relax",
-              timeout: 3000
+              timeout: 10000
             }).show();
           }
         );
+      } else {
+        fetch(currentPath.replace("CREATEZIP/",""),{headers: {'request': true}})
+        .then(response => {
+          return response.json();
+        })
+        .then(
+          response => {
+            if (response.status == "COMPLETE"){
+              new Noty({
+                text: `Completed if a window does not automatically open you can find the file available for 12 hours here:<br><br> ${response.link}`,
+                type: "notification",
+                theme: "relax",
+                timeout: 10000
+              }).show();
+              window.open(`${response.link}`, "_blank");
+            } else {
+              new Noty({
+                text: `Error Compressing Files/Folders see console`,
+                type: "error",
+                theme: "relax",
+                timeout: 10000
+              }).show();
+              console.error(response.msg)
+            }
+          },
+          error => {
+            console.log(error);
+            new Noty({
+              text: error.message,
+              type: "error",
+              theme: "relax",
+              timeout: 10000
+            }).show();
+          }
+        )
+      }
     };
     getData();
   }, [currentPath]);
@@ -115,6 +178,9 @@ const ChonkyBrowse = () => {
       files={currentNodes}
       folderChain={folderChain}
       onFileAction={handleFileOpen}
+      fileActions={[
+        ChonkyActions.DownloadFiles
+      ]}
       disableDragAndDrop={true}
       darkMode={true}
       //view={FileView.SmallThumbs}

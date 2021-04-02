@@ -5,6 +5,8 @@ import { Layout } from '../../components/Layout';
 import { Background } from '../../components/Background';
 import { App } from '../../components/App';
 
+let paths = ['/latest', '/links', '/browse', '/about'];
+
 class Component extends React.Component {
   static displayName = 'Template';
 
@@ -24,7 +26,6 @@ class Component extends React.Component {
 
   constructor () {
     super(...arguments);
-
     this.state = {
       show: true,
       enterShow: true
@@ -53,19 +54,33 @@ class Component extends React.Component {
     const { show, enterShow } = this.state;
     const { location, classes, layout, background, children } = this.props;
 
-    const isURLContent = ['/latest', '/links', '/browse', '/about'].find(path => {
+    const isURLContent = paths.find(path => {
       return location.pathname.indexOf(path) === 0;
     });
+    const isBrowserPath = paths.includes("/"+location.pathname.replace("/","").split("/")[0])
+    if (isURLContent || isBrowserPath){
       return (
         <Layout {...layout}>
           <Background
             {...background}
             animation={{ show, ...background.animation }}
           >
-            {isURLContent ? <App>{children}</App> : children}
+            {<App>{children}</App>}
           </Background>
         </Layout>
       );
+    } else {
+      return (
+        <Layout {...layout}>
+          <Background
+            {...background}
+            animation={{ show, ...background.animation }}
+          >
+            {children}
+          </Background>
+        </Layout>
+      );
+    }
   }
 }
 

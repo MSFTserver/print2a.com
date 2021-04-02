@@ -10,10 +10,6 @@ import { withStyles } from '../tools/withStyles';
 import { Main } from '../components/Main';
 import { Secuence } from '../components/Secuence';
 import { Text } from '../components/Text';
-
-import { FileBrowser, FileView, setChonkyDefaults } from "chonky";
-import { ChonkyIconFA } from 'chonky-icon-fontawesome';
-setChonkyDefaults({ iconComponent: ChonkyIconFA });
 import ChonkyBrowse from '/static/ChonkyBrowse.js';
 
 const styles = theme => ({

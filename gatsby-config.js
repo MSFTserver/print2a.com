@@ -1,6 +1,9 @@
 const theme = require('./src/settings/theme');
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: `https://print2a.com`,
+  },
   plugins: [
     {
       resolve: 'gatsby-plugin-jss',
@@ -29,8 +32,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: 'UA-193203727-1'
+        trackingId: 'UA-193203727-1',
+        anonymize: true,
+        respectDNT: true,
       }
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`
     }
   ]
 };
