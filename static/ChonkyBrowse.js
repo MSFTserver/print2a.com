@@ -32,11 +32,11 @@ const ChonkyBrowse = () => {
     name:"print2a",
     isDir:true
   }
-  if (window.location.search){
-    console.log(window.location.search)
-    const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams.get('folder'))
-    newPath = `${print2aApiEndpoint}/print2a/${urlParams.get('folder')}`;
+  if (typeof window !== "undefined"){
+    if (window.location.search){
+      const urlParams = new URLSearchParams(window.location.search);
+      newPath = `${print2aApiEndpoint}/print2a/${urlParams.get('folder')}`;
+    }
   }
   const [currentNodes, setCurrentNodes] = useState([]);
   const [currentPath, setCurrentPath] = useState(newPath);
