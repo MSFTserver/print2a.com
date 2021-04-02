@@ -119,7 +119,7 @@ const ChonkyBrowse = () => {
                 isDir: true
               })
             }
-            window.history.pushState('NewPage', 'Title', `/browse?folder=${currentPath.replace(print2aApiEndpoint,"").replace("/print2a/","")}`);
+            window.history.pushState('NewPage', 'Title', `/browse?folder=${currentPath.replace(print2aApiEndpoint,"").replace("/print2a/","").replace("/print2a","")}`);
             setFolderChain(folderChainArray.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i));
           },
           error => {
