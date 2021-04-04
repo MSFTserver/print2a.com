@@ -27,7 +27,8 @@ class Latest extends React.Component {
         <header>
           <h1><Text>Latest Files</Text></h1>
         </header>
-        {projects = GetLatest()
+        {projects = GetLatest()}
+        {
           projects.map((file, index) => (
           <Post
             key={index}
