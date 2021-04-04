@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import latest from '/static/latest.js';
+import GetLatest from '/static/latest.js';
 import { withStyles } from '../tools/withStyles';
 import { Link } from '../components/Link';
 import { Main } from '../components/Main';
@@ -27,7 +27,8 @@ class Latest extends React.Component {
         <header>
           <h1><Text>Latest Files</Text></h1>
         </header>
-        {latest.map((file, index) => (
+        {projects = GetLatest();
+          projects.map((file, index) => (
           <Post
             key={index}
             audio={{ silent: index > 4 }}
