@@ -27,7 +27,7 @@ class Latest extends React.Component {
         <header>
           <h1><Text>Latest Files</Text></h1>
         </header>
-        </GetLatest>
+        <GetLatest />
         </Secuence>
       </Main>
     );
