@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Post } from '../components/Post';
+import { Post } from '../src/components/Post';
 
 const print2aApiHost = "https://print2a.com";
 const print2aApiPort = "5757";
