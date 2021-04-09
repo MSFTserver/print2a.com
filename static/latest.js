@@ -16,8 +16,7 @@ const GetLatest = () => {
       }
       getLatest();
     }
-  }, [])
-  setLatest([{title: "LOADING...", tags: "LOADING...", link: "#"}])
+  }, [latest])
   return (
     latest.map((file, index) => (
     <Post
