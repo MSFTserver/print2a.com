@@ -23,11 +23,11 @@ class Latest extends React.Component {
   render () {
     let projects = [];
     if (typeof window !== "undefined"){
-      projects = fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
+      fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
         return response.json();
       })
       .then(response => {
-        return response
+        projects = response;
       })
     }
     console.log(projects)
