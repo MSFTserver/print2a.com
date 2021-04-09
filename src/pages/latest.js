@@ -1,7 +1,7 @@
 import React from 'react';
+import AppendHead from 'react-append-head';
 import PropTypes from 'prop-types';
 
-import latest from '/static/latest.js';
 import { withStyles } from '../tools/withStyles';
 import { Link } from '../components/Link';
 import { Main } from '../components/Main';
@@ -22,12 +22,17 @@ class Latest extends React.Component {
     const { classes } = this.props;
 
     return (
+      <AppendHead>
+        <script name='GetLatest' src='/static/latest.js'></script>
+      </AppendHead>
       <Main className={classes.root}>
         <Secuence stagger>
         <header>
           <h1><Text>Latest Files</Text></h1>
         </header>
-        {latest.map((file, index) => (
+        {
+          const projects = GetLatest();
+          projects.map((file, index) => (
           <Post
             key={index}
             audio={{ silent: index > 4 }}
