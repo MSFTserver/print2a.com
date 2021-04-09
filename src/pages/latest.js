@@ -8,6 +8,7 @@ import { Main } from '../components/Main';
 import { Post } from '../components/Post';
 import { Secuence } from '../components/Secuence';
 import { Text } from '../components/Text';
+import GetLatest from '/static/latest.js';
 
 const styles = theme => ({
   root: {}
@@ -20,24 +21,13 @@ class Latest extends React.Component {
 
   render () {
     const { classes } = this.props;
-    let projects = [{"title":"LOADING...","tags":"LOADING...","link":"#"}]
     return (
       <Main className={classes.root}>
-      <AppendHead>
-        <script name="GetLatest" src="/static/latest.js"></script>
-      </AppendHead>
         <Secuence stagger>
         <header>
           <h1><Text>Latest Files</Text></h1>
         </header>
-        {
-          projects.map((file, index) => (
-          <Post
-            key={index}
-            audio={{ silent: index > 4 }}
-            data={{ ...file, id: "file" + index }}
-          />
-        ))}
+        </GetLatest>
         </Secuence>
       </Main>
     );
