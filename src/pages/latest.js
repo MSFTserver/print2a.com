@@ -21,7 +21,7 @@ class Latest extends React.Component {
   };
 
   render () {
-    let projects = [title: "LOADING...", tags: "LOADING...", link: "#"];
+    let projects = [{title: "LOADING...", tags: "LOADING...", link: "#"}];
     if (typeof window !== "undefined"){
       fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
         return response.json();
