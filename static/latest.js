@@ -1,3 +1,5 @@
+import React from "react";
+
 const print2aApiHost = "https://print2a.com";
 const print2aApiPort = "5757";
 const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`;
