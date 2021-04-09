@@ -30,6 +30,7 @@ class Latest extends React.Component {
         return response
       })
     }
+    console.log(projects)
     const { classes } = this.props;
     return (
       <Main className={classes.root}>
