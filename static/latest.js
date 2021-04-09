@@ -14,9 +14,10 @@ const GetLatest = () => {
         const res = await res.json();
         setLatest(res);
       }
-      getLatest()
+      getLatest();
     }
   }, [])
+  setLatest([{title: "LOADING...", tags: "LOADING...", link: "#"}])
   return (
     latest.map((file, index) => (
     <Post
