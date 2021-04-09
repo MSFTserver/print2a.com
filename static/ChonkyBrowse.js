@@ -141,7 +141,7 @@ const ChonkyBrowse = () => {
           response => {
             if (response.status == "COMPLETE"){
               new Noty({
-                text: `Completed<br>if a window does not automatically open you can find the file available for 12 hours here:<br><br> ${response.link}`,
+                text: `Completed<br>if a window does not automatically open you can find the file available for 4 hours here:<br><br> ${response.link}`,
                 type: "notification",
                 theme: "relax",
                 timeout: 10000
