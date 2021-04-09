@@ -30,13 +30,14 @@ class Latest extends React.Component {
           <h1><Text>Latest Files</Text></h1>
         </header>
         {
+          if(projects){
           projects.map((file, index) => (
           <Post
             key={index}
             audio={{ silent: index > 4 }}
             data={{ ...file, id: "file" + index }}
           />
-        ))}
+        ))}}
         </Secuence>
       </Main>
     );
