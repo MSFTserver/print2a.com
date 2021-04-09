@@ -20,7 +20,7 @@ class Latest extends React.Component {
 
   render () {
     const { classes } = this.props;
-
+    const projects = GetLatest();
     return (
       <Main className={classes.root}>
       <AppendHead>
@@ -31,7 +31,6 @@ class Latest extends React.Component {
           <h1><Text>Latest Files</Text></h1>
         </header>
         {
-          const projects = GetLatest();
           projects.map((file, index) => (
           <Post
             key={index}
