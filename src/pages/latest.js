@@ -22,16 +22,16 @@ class Latest extends React.Component {
 
   render () {
     if (typeof window !== "undefined"){
-      let projects = [];
-      let response = fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
+      let projects = fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
         return response.json();
       })
       .then(response => {
-        projects = response;
-        const { classes } = this.props;
-        return (
-          <Main className={classes.root}>
-            <Secuence stagger>
+        return response
+      })
+      const { classes } = this.props;
+      return (
+        <Main className={classes.root}>
+          <Secuence stagger>
             <header>
               <h1><Text>Latest Files</Text></h1>
             </header>
@@ -43,10 +43,9 @@ class Latest extends React.Component {
                 data={{ ...file, id: 'file' + index }}
               />
             ))}
-            </Secuence>
-          </Main>
-        );  
-      })
+          </Secuence>
+        </Main>
+      )
     }
   }
 }
