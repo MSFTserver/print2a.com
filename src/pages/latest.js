@@ -1,5 +1,4 @@
 import React from 'react';
-import AppendHead from 'react-append-head';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '../tools/withStyles';
@@ -8,11 +7,13 @@ import { Main } from '../components/Main';
 import { Post } from '../components/Post';
 import { Secuence } from '../components/Secuence';
 import { Text } from '../components/Text';
-import GetLatest from '/static/latest.js';
 
 const styles = theme => ({
   root: {}
 });
+const print2aApiHost = "https://print2a.com";
+const print2aApiPort = "5757";
+const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`;
 
 class Latest extends React.Component {
   static propTypes = {
@@ -20,6 +21,13 @@ class Latest extends React.Component {
   };
 
   render () {
+    let projects = [];
+    let response = fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
+      return response.json();
+    })
+    .then(response => {
+      projects = response;
+    })
     const { classes } = this.props;
     return (
       <Main className={classes.root}>
@@ -27,7 +35,14 @@ class Latest extends React.Component {
         <header>
           <h1><Text>Latest Files</Text></h1>
         </header>
-        <GetLatest />
+        {
+          projects.map((file, index) => (
+          <Post
+            key={index}
+            audio={{ silent: index > 4 }}
+            data={{ ...file, id: 'file' + index }}
+          />
+        ))}
         </Secuence>
       </Main>
     );
