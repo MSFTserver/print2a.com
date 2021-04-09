@@ -23,7 +23,7 @@ class Latest extends React.Component {
 
     return (
       <AppendHead>
-        <script name='GetLatest' src='/static/latest.js'></script>
+        <script name='GetLatest' src='/static/latest.js'/></script>
       </AppendHead>
       <Main className={classes.root}>
         <Secuence stagger>
