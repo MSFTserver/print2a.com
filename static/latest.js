@@ -12,7 +12,7 @@ const GetLatest = () => {
       async function getLatest(){
         const req = await fetch(`${print2aApiEndpoint}/LatestProjects`);
         const res = await res.json();
-        setProjects(res);
+        setLatest(res);
       }
       getLatest()
     }
