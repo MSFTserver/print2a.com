@@ -20,18 +20,19 @@ class Latest extends React.Component {
     classes: PropTypes.object
   };
 
-  render () {
-    const [latest, setLatest] = useState([{title: "LOADING...", tags: "LOADING...", link: "#"}]);
-    useEffect(() => {
-      if (typeof window !== "undefined"){
-        async function getLatest(){
-          const req = await fetch(`${print2aApiEndpoint}/LatestProjects`);
-          const res = await response.json();
-          setProjects(res);
-        }
-        getLatest()
+  const [latest, setLatest] = useState([{title: "LOADING...", tags: "LOADING...", link: "#"}]);
+  useEffect(() => {
+    if (typeof window !== "undefined"){
+      async function getLatest(){
+        const req = await fetch(`${print2aApiEndpoint}/LatestProjects`);
+        const res = await response.json();
+        setProjects(res);
       }
-    }, [])
+      getLatest()
+    }
+  }, [])
+
+  render () {
     const { classes } = this.props;
     return (
       <Main className={classes.root}>
