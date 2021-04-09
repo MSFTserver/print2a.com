@@ -21,16 +21,17 @@ class Latest extends React.Component {
   };
 
   render () {
-    let projects = [{title: "LOADING...", tags: "LOADING...", link: "#"}];
-    if (typeof window !== "undefined"){
-      fetch(`${print2aApiEndpoint}/LatestProjects`).then(response => {
-        return response.json();
-      })
-      .then(response => {
-        projects = response;
-      })
-    }
-    console.log(projects)
+    const [latest, setLatest] = useState([{title: "LOADING...", tags: "LOADING...", link: "#"}]);
+    useEffect(() => {
+      if (typeof window !== "undefined"){
+        async function getLatest(){
+          const req = await fetch(`${print2aApiEndpoint}/LatestProjects`);
+          const res = await response.json();
+          setProjects(res);
+        }
+        getLatest()
+      }
+    }, [])
     const { classes } = this.props;
     return (
       <Main className={classes.root}>
@@ -39,7 +40,7 @@ class Latest extends React.Component {
             <h1><Text>Latest Files</Text></h1>
           </header>
           {
-            projects.map((file, index) => (
+            latest.map((file, index) => (
             <Post
               key={index}
               audio={{ silent: index > 4 }}
