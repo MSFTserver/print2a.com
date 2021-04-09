@@ -20,7 +20,6 @@ class Latest extends React.Component {
 
   render () {
     const { classes } = this.props;
-    const projects = GetLatest();
     return (
       <Main className={classes.root}>
       <AppendHead>
