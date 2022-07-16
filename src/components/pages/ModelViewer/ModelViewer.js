@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import './ModelViewer.scss'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Frame, Line, Words, Button } from 'arwes'
 import * as THREE from 'three'
 import {
@@ -395,361 +395,362 @@ function init(fileExt, fileData) {
   window.addEventListener('resize', onWindowResize, false)
 }
 
-class ModelViewer extends React.Component {
-  async componentDidMount() {
-    const print2aApiHost = 'https://print2a.com'
-    const print2aApiPort = '5757'
-    const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    const filePath = urlParams.get('fileLocation')
-    const fileName = filePath.split('/').pop()
-    const fileExt = fileName.split('.').pop().toLowerCase()
-    const data = await fetch(
-      `${print2aApiEndpoint}/GetFile?fileLocation=print2a/${filePath}`,
-    )
-    let fileData = null
-    if (fileExt.toLowerCase() === 'obj') {
-      fileData = await data.text()
-    } else {
-      fileData = await data.arrayBuffer()
+function ModelViewer(props) {
+  useEffect(() => {
+    async function fetchData() {
+      const print2aApiHost = 'https://print2a.com'
+      const print2aApiPort = '5757'
+      const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`
+      const queryString = window.location.search
+      const urlParams = new URLSearchParams(queryString)
+      const filePath = urlParams.get('fileLocation')
+      const fileName = filePath.split('/').pop()
+      const fileExt = fileName.split('.').pop().toLowerCase()
+      const data = await fetch(
+        `${print2aApiEndpoint}/GetFile?fileLocation=print2a/${filePath}`,
+      )
+      let fileData = null
+      if (fileExt === 'obj') {
+        fileData = await data.text()
+      } else {
+        fileData = await data.arrayBuffer()
+      }
+
+      const densityInput = document.getElementById('densityValue')
+      densityInput.addEventListener('input', () =>
+        moreDensity(densityInput.value.toString()),
+      )
+      densityInput.value = density
+
+      const costKilogramInput = document.getElementById('costKilogramValue')
+      costKilogramInput.addEventListener('input', () =>
+        moreCost(costKilogramInput.value.toString()),
+      )
+      costKilogramInput.value = filamentCost
+
+      const filamentDiameterInput = document.getElementById('diameterValue')
+      filamentDiameterInput.addEventListener('input', () =>
+        moreDiameter(filamentDiameterInput.value.toString()),
+      )
+      filamentDiameterInput.value = filamentDiameter
+
+      const printSpeedInput = document.getElementById('printSpeedValue')
+      printSpeedInput.addEventListener('input', () =>
+        moreSpeed(printSpeedInput.value.toString()),
+      )
+      printSpeedInput.value = printSpeed
+
+      document.getElementById('calcContainer').style.display = 'block'
+      init(fileExt, fileData)
     }
+    fetchData()
+  }, [])
 
-    const densityInput = document.getElementById('densityValue')
-    densityInput.addEventListener('input', () =>
-      moreDensity(densityInput.value.toString()),
-    )
-    densityInput.value = density
-
-    const costKilogramInput = document.getElementById('costKilogramValue')
-    costKilogramInput.addEventListener('input', () =>
-      moreCost(costKilogramInput.value.toString()),
-    )
-    costKilogramInput.value = filamentCost
-
-    const filamentDiameterInput = document.getElementById('diameterValue')
-    filamentDiameterInput.addEventListener('input', () =>
-      moreDiameter(filamentDiameterInput.value.toString()),
-    )
-    filamentDiameterInput.value = filamentDiameter
-
-    const printSpeedInput = document.getElementById('printSpeedValue')
-    printSpeedInput.addEventListener('input', () =>
-      moreSpeed(printSpeedInput.value.toString()),
-    )
-    printSpeedInput.value = printSpeed
-
-    document.getElementById('calcContainer').style.display = 'block'
-    init(fileExt, fileData)
-  }
-
-  render() {
-    return (
-      <div className="ModelViewer">
-        <div id="loading" className="loading_splash">
-          <div className="loading_splash_container">
-            <div className="lds-spinner">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        </div>
-        <div className="content">
-          <div id="modelContainer"></div>
-          <div id="calcContainer">
-            <Frame
-              animate
-              level={0}
-              corners={6}
-              layer="primary"
-              show={this.props.anim.entered}
-            >
-              <div id="calcContents">
-                <div className="calcButtons">
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="modelButtons"
-                    onClick={() => {
-                      const urlParams = new URLSearchParams(
-                        window.location.search,
-                      )
-                      let objParams = urlParams.get('fileLocation').split('/')
-                      objParams.pop()
-                      objParams = objParams.join('/')
-                      window.location.href = `/browse?folder=${objParams}`
-                    }}
-                  >
-                    <i className="fa-solid fa-gun fa-flip-horizontal"></i>
-                    &nbsp;Back to Folder
-                  </Button>
-                  &nbsp;&nbsp;
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="modelButtons"
-                    onClick={() => {
-                      const urlParams = new URLSearchParams(
-                        window.location.search,
-                      )
-                      const filePath = urlParams.get('fileLocation')
-
-                      window.open(
-                        `https://print2a.com:5757/print2a/${filePath}`,
-                        '_blank',
-                      )
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-arrow-down"></i>
-                    &nbsp;Download
-                  </Button>
-                  &nbsp;&nbsp;
-                  <Button
-                    buttonProps={{
-                      style: { padding: '1vh' },
-                      Id: 'calcButton',
-                    }}
-                    className="modelButtons"
-                    id="calcButton"
-                    onClick={() => {
-                      const calcContentsToggle =
-                        document.getElementById('calcContentsToggle')
-                      const isToggled = calcContentsToggle.style.display
-                      if (isToggled === 'none') {
-                        calcContentsToggle.style.display = 'inherit'
-                      } else {
-                        calcContentsToggle.style.display = 'none'
-                      }
-                    }}
-                  >
-                    <i className="fa-solid fa-calculator"></i>
-                    &nbsp;Calc Menu
-                  </Button>
-                </div>
-                <div style={{ display: 'none' }} id="calcContentsToggle">
-                  <Line animate className="separator" />
-                  <label htmlFor="densityValue">
-                    <Words animate show={this.props.anim.entered}>
-                      Density:&nbsp;
-                    </Words>
-                  </label>
-                  <input id="densityValue" />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;g/cc&nbsp;
-                  </Words>
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreDensity(null, 1)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-up"></i>
-                  </Button>
-                  &nbsp;
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreDensity(null, 0)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-down"></i>
-                  </Button>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Weight:&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="weightValue"
-                  />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;g
-                  </Words>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Volume:&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="volumeValue"
-                  />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;cm3
-                  </Words>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Dimensions:&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="widthValue"
-                  />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;x&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="heightValue"
-                  />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;x&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="depthValue"
-                  />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;cm
-                  </Words>
-                  <br style={brStyle} />
-                  <Line animate className="separator" />
-                  <label htmlFor="costKilogramValue">
-                    <Words animate show={this.props.anim.entered}>
-                      Filament Cost:&nbsp;
-                    </Words>
-                    <Words layer="alert" animate show={this.props.anim.entered}>
-                      $
-                    </Words>
-                  </label>
-                  <input id="costKilogramValue" />
-                  &nbsp;&nbsp;
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreCost(null, 1)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-up"></i>
-                  </Button>
-                  &nbsp;
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreCost(null, 0)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-down"></i>
-                  </Button>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Printing Cost:&nbsp;
-                  </Words>
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    $
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="costValue"
-                  />
-                  <br style={brStyle} />
-                  <Line animate className="separator" />
-                  <Words animate show={this.props.anim.entered}>
-                    Filament Diameter:&nbsp;
-                  </Words>
-                  <input id="diameterValue" />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;mm&nbsp;
-                  </Words>
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreDiameter(null, 1)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-up"></i>
-                  </Button>
-                  &nbsp;
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreDiameter(null, 0)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-down"></i>
-                  </Button>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Print Speed:&nbsp;
-                  </Words>
-                  <input id="printSpeedValue"></input>
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;mm/s&nbsp;
-                  </Words>
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreSpeed(null, 1)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-up"></i>
-                  </Button>
-                  &nbsp;
-                  <Button
-                    buttonProps={buttonStyle}
-                    className="buttonChanger"
-                    onClick={() => moreSpeed(null, 0)}
-                  >
-                    <i className="fa-solid fa-circle-chevron-down"></i>
-                  </Button>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Filament Length:&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="lengthValue"
-                  />
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    &nbsp;mm
-                  </Words>
-                  <br style={brStyle} />
-                  <Words animate show={this.props.anim.entered}>
-                    Print Time:&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="hoursValue"
-                  />
-                  &nbsp;
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    hrs&nbsp;
-                  </Words>
-                  <Words
-                    layer="alert"
-                    animate
-                    show={this.props.anim.entered}
-                    id="minutesValue"
-                  />
-                  &nbsp;
-                  <Words layer="alert" animate show={this.props.anim.entered}>
-                    mins
-                  </Words>
-                  <br style={brStyle} />
-                </div>
-              </div>
-            </Frame>
+  return (
+    <div className="ModelViewer">
+      <div id="loading" className="loading_splash">
+        <div className="loading_splash_container">
+          <div className="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
         </div>
       </div>
-    )
-  }
+      <div className="content">
+        <div id="modelContainer"></div>
+        <div id="calcContainer">
+          <Frame
+            animate
+            level={0}
+            corners={6}
+            layer="primary"
+            show={props.anim.entered}
+          >
+            <div id="calcContents">
+              <div className="calcButtons">
+                <Button
+                  buttonProps={buttonStyle}
+                  className="modelButtons"
+                  onClick={() => {
+                    const urlParams = new URLSearchParams(
+                      window.location.search,
+                    )
+                    let objParams = urlParams.get('fileLocation').split('/')
+                    objParams.pop()
+                    objParams = objParams.join('/')
+                    window.location.href = `/browse/${objParams}`
+                  }}
+                >
+                  <i className="fa-solid fa-gun fa-flip-horizontal"></i>
+                  &nbsp;Back to Folder
+                </Button>
+                &nbsp;&nbsp;
+                <Button
+                  buttonProps={buttonStyle}
+                  className="modelButtons"
+                  onClick={() => {
+                    const urlParams = new URLSearchParams(
+                      window.location.search,
+                    )
+                    const filePath = urlParams.get('fileLocation')
+
+                    window.open(
+                      `https://print2a.com:5757/print2a/${filePath}`,
+                      '_blank',
+                    )
+                  }}
+                >
+                  <i className="fa-solid fa-circle-arrow-down"></i>
+                  &nbsp;Download
+                </Button>
+                &nbsp;&nbsp;
+                <Button
+                  buttonProps={{
+                    style: { padding: '1vh' },
+                    Id: 'calcButton',
+                  }}
+                  className="modelButtons"
+                  id="calcButton"
+                  onClick={() => {
+                    const calcContentsToggle =
+                      document.getElementById('calcContentsToggle')
+                    const isToggled = calcContentsToggle.style.display
+                    if (isToggled === 'none') {
+                      calcContentsToggle.style.display = 'inherit'
+                    } else {
+                      calcContentsToggle.style.display = 'none'
+                    }
+                  }}
+                >
+                  <i className="fa-solid fa-calculator"></i>
+                  &nbsp;Calc Menu
+                </Button>
+              </div>
+              <div style={{ display: 'none' }} id="calcContentsToggle">
+                <Line animate className="separator" />
+                <label htmlFor="densityValue">
+                  <Words animate show={props.anim.entered}>
+                    Density:&nbsp;
+                  </Words>
+                </label>
+                <input id="densityValue" />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;g/cc&nbsp;
+                </Words>
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreDensity(null, 1)}
+                >
+                  <i className="fa-solid fa-circle-chevron-up"></i>
+                </Button>
+                &nbsp;
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreDensity(null, 0)}
+                >
+                  <i className="fa-solid fa-circle-chevron-down"></i>
+                </Button>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Weight:&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="weightValue"
+                />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;g
+                </Words>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Volume:&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="volumeValue"
+                />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;cm3
+                </Words>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Dimensions:&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="widthValue"
+                />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;x&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="heightValue"
+                />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;x&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="depthValue"
+                />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;cm
+                </Words>
+                <br style={brStyle} />
+                <Line animate className="separator" />
+                <label htmlFor="costKilogramValue">
+                  <Words animate show={props.anim.entered}>
+                    Filament Cost:&nbsp;
+                  </Words>
+                  <Words layer="alert" animate show={props.anim.entered}>
+                    $
+                  </Words>
+                </label>
+                <input id="costKilogramValue" />
+                &nbsp;&nbsp;
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreCost(null, 1)}
+                >
+                  <i className="fa-solid fa-circle-chevron-up"></i>
+                </Button>
+                &nbsp;
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreCost(null, 0)}
+                >
+                  <i className="fa-solid fa-circle-chevron-down"></i>
+                </Button>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Printing Cost:&nbsp;
+                </Words>
+                <Words layer="alert" animate show={props.anim.entered}>
+                  $
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="costValue"
+                />
+                <br style={brStyle} />
+                <Line animate className="separator" />
+                <Words animate show={props.anim.entered}>
+                  Filament Diameter:&nbsp;
+                </Words>
+                <input id="diameterValue" />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;mm&nbsp;
+                </Words>
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreDiameter(null, 1)}
+                >
+                  <i className="fa-solid fa-circle-chevron-up"></i>
+                </Button>
+                &nbsp;
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreDiameter(null, 0)}
+                >
+                  <i className="fa-solid fa-circle-chevron-down"></i>
+                </Button>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Print Speed:&nbsp;
+                </Words>
+                <input id="printSpeedValue"></input>
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;mm/s&nbsp;
+                </Words>
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreSpeed(null, 1)}
+                >
+                  <i className="fa-solid fa-circle-chevron-up"></i>
+                </Button>
+                &nbsp;
+                <Button
+                  buttonProps={buttonStyle}
+                  className="buttonChanger"
+                  onClick={() => moreSpeed(null, 0)}
+                >
+                  <i className="fa-solid fa-circle-chevron-down"></i>
+                </Button>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Filament Length:&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="lengthValue"
+                />
+                <Words layer="alert" animate show={props.anim.entered}>
+                  &nbsp;mm
+                </Words>
+                <br style={brStyle} />
+                <Words animate show={props.anim.entered}>
+                  Print Time:&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="hoursValue"
+                />
+                &nbsp;
+                <Words layer="alert" animate show={props.anim.entered}>
+                  hrs&nbsp;
+                </Words>
+                <Words
+                  layer="alert"
+                  animate
+                  show={props.anim.entered}
+                  id="minutesValue"
+                />
+                &nbsp;
+                <Words layer="alert" animate show={props.anim.entered}>
+                  mins
+                </Words>
+                <br style={brStyle} />
+              </div>
+            </div>
+          </Frame>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default ModelViewer

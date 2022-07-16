@@ -34,6 +34,7 @@
   height: max-content !important;
   max-width: 100%;
   max-height: 100%;
+  background: #808080;
 }
 
 .textButtons {
@@ -57,5 +58,10 @@
   white-space: pre-wrap;
   max-height: 85vh;
   overflow: hidden auto;
-  padding: 2vw;
+  width: 85vh;
+  text-align: center;
+}
+
+.popupContents {
+  height: 78vh;
 }

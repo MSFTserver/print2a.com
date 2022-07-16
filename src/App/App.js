@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
   ThemeProvider,
@@ -25,49 +25,55 @@ import glow from '../helpers/assets/images/glow.png'
 import theme from '../helpers/Theme'
 import mySounds from '../helpers/Sounds'
 
-class App extends React.Component {
-  resources = {
+function App() {
+  const resources = {
     bg: background,
     pattern: glow,
   }
 
-  state = {
+  const [state, setState] = useState({
     showPage: 'home',
     showPopup: false,
     popupFile: {
       path: null,
       ext: null,
       name: null,
+      data: null,
     },
     pdfPage: 1,
-  }
+  })
 
-  setShowPage = (page) => {
-    this.setState({
+  const setShowPage = (page) => {
+    setState((prev) => ({
+      ...prev,
       showPage: page,
-    })
+    }))
   }
 
-  upPage = () => {
-    this.setState((prev) => ({
+  const upPage = () => {
+    setState((prev) => ({
+      ...prev,
       pdfPage: prev.pdfPage + 1,
     }))
   }
 
-  downPage = () => {
-    this.setState((prev) => ({
+  const downPage = () => {
+    setState((prev) => ({
+      ...prev,
       pdfPage: prev.pdfPage - 1,
     }))
   }
 
-  setShowPopup = () => {
-    this.setState((previousState) => ({
-      showPopup: !previousState.showPopup,
+  const setShowPopup = () => {
+    setState((prev) => ({
+      ...prev,
+      showPopup: !prev.showPopup,
     }))
   }
 
-  setPopupFile = (fileName, filePath, fileExt, fileData) => {
-    this.setState(() => ({
+  const setPopupFile = (fileName, filePath, fileExt, fileData) => {
+    setState((prev) => ({
+      ...prev,
       popupFile: {
         path: filePath,
         name: fileName,
@@ -76,99 +82,81 @@ class App extends React.Component {
       },
     }))
   }
-
-  render() {
-    const createdTheme = createTheme(theme)
-    const createdSounds = createSounds(mySounds)
-    const MyNav = withSounds()((props) => <NavBar {...props} />)
-    const { props } = this
-    return (
-      <ThemeProvider theme={createdTheme}>
-        <SoundsProvider sounds={createdSounds}>
-          <Arwes
-            resources={this.resources}
-            animate
-            show
-            background={{
-              small: background,
-              medium: background,
-              large: background,
-              xlarge: background,
-            }}
-            pattern={glow}
-          >
-            {(anim) => (
-              <div className="App">
-                <Toaster position="bottom-right" gutter={16} />
-                <Router>
-                  <MyNav
-                    anim={anim}
-                    setShowPage={this.setShowPage}
-                    state={this.state}
-                  />
-                  <Puffs>
-                    <Routes>
-                      <Route
-                        path="/"
-                        element={<HomePage {...props} anim={anim} />}
-                      />
-                      <Route
-                        path="/latest"
-                        element={<Latest {...props} anim={anim} />}
-                      />
-                      <Route
-                        path="/links"
-                        element={<Links {...props} anim={anim} />}
-                      />
-                      <Route
-                        path="/browse/*"
-                        element={
-                          <Browse
-                            {...props}
-                            anim={anim}
-                            state={this.state}
-                            setShowPopup={this.setShowPopup}
-                            setPopupFile={this.setPopupFile}
-                            upPage={this.upPage}
-                            downPage={this.downPage}
-                            theme={createdTheme}
-                          />
-                        }
-                      />
-                      <Route
-                        path="/modelViewer"
-                        element={<ModelViewer {...props} anim={anim} />}
-                      />
-                    </Routes>
-                  </Puffs>
-                  <div className="footer">
-                    <Footer
-                      style={{ position: 'fixed', bottom: 0, width: '100%' }}
-                    >
-                      <div className="footerContents">
-                        <Link
-                          href="https://github.com/MSFTserver/print2a.com"
-                          alt="Arwes theme"
-                        >
-                          - Open Source -
-                        </Link>
-                        <Link
-                          href="https://github.com/arwesjs/arwes"
-                          alt="Arwes theme"
-                        >
-                          Powered By Arwes
-                        </Link>
-                      </div>
-                    </Footer>
-                  </div>
-                </Router>
-              </div>
-            )}
-          </Arwes>
-        </SoundsProvider>
-      </ThemeProvider>
-    )
-  }
+  const createdTheme = createTheme(theme)
+  const createdSounds = createSounds(mySounds)
+  const MyNav = withSounds()((props) => <NavBar {...props} />)
+  return (
+    <ThemeProvider theme={createdTheme}>
+      <SoundsProvider sounds={createdSounds}>
+        <Arwes
+          resources={resources}
+          animate
+          show
+          background={{
+            small: background,
+            medium: background,
+            large: background,
+            xlarge: background,
+          }}
+          pattern={glow}
+        >
+          {(anim) => (
+            <div className="App">
+              <Toaster position="bottom-right" gutter={16} />
+              <Router>
+                <MyNav anim={anim} setShowPage={setShowPage} state={state} />
+                <Puffs>
+                  <Routes>
+                    <Route path="/" element={<HomePage anim={anim} />} />
+                    <Route path="/latest" element={<Latest anim={anim} />} />
+                    <Route path="/links" element={<Links anim={anim} />} />
+                    <Route
+                      path="/browse/*"
+                      element={
+                        <Browse
+                          anim={anim}
+                          state={state}
+                          setShowPopup={setShowPopup}
+                          setPopupFile={setPopupFile}
+                          upPage={upPage}
+                          downPage={downPage}
+                          theme={createdTheme}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/modelViewer"
+                      element={<ModelViewer anim={anim} />}
+                    />
+                  </Routes>
+                </Puffs>
+                <div className="footer">
+                  <Footer
+                    style={{ position: 'fixed', bottom: 0, width: '100%' }}
+                  >
+                    <div className="footerContents">
+                      <Link
+                        href="https://github.com/MSFTserver/print2a.com"
+                        alt="Arwes theme"
+                      >
+                        - Open Source -
+                      </Link>
+                      <Link
+                        href="https://github.com/arwesjs/arwes"
+                        alt="Arwes theme"
+                      >
+                        Powered By Arwes
+                      </Link>
+                    </div>
+                  </Footer>
+                </div>
+              </Router>
+            </div>
+          )}
+        </Arwes>
+      </SoundsProvider>
+    </ThemeProvider>
+  )
 }
 
 export default App
