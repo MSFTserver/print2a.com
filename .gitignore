@@ -1,39 +1,25 @@
-# gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-node_modules
-jspm_packages
-bower_components
-logs
-pids
-lib-cov
-coverage
-nbproject
-.next
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+package-lock.json
 
-*.log
-*.pid
-*.seed
+# testing
+/coverage
 
-*~
-*#
-.cache
-.grunt
-.lock-wscript
-.tmp
-.sass-cache
-.DS_STORE
-.netbeans
-.idea
-.npm
-.node_history
-.node_repl_history
-.vagrant
-.eslintcache
+# production
+/build
+
+# misc
 .DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-Thumbs.db
-dump.rdb
-npm-debug.log
-yarn-error.log
-
-/public
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

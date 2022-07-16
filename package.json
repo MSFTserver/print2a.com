@@ -1,51 +1,61 @@
 {
-  "name": "print2a-website",
-  "version": "1.0.0",
-  "license": "GNUv3",
-  "scripts": {
-    "lint": "eslint ./src",
-    "lintfix": "eslint ./src --fix",
-    "develop": "gatsby develop --host 0.0.0.0 --port 14000",
-    "build": "gatsby build",
-    "server": "NODE_ENV=production PORT=14000 HOST=127.0.0.1 node server.js"
-  },
+  "name": "print2a",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@helcor/window-sizes": "^1.0.0-beta.8",
-    "animejs": "^3.0.1",
-    "chonky": "^2.1.0",
-    "chonky-icon-fontawesome": "^2.1.0",
-    "classnames": "^2.2.6",
-    "express": "^4.16.4",
-    "gatsby": "^2.31.1",
-    "gatsby-plugin-google-analytics": "^2.0.18",
-    "gatsby-plugin-jss": "^2.0.7",
-    "gatsby-plugin-layout": "^1.0.14",
-    "gatsby-plugin-manifest": "^2.10.0",
-    "gatsby-plugin-react-helmet": "^3.0.12",
-    "gatsby-plugin-sitemap": "^3.1.0",
-    "helmet": "^4.3.1",
-    "hoist-non-react-statics": "^3.3.0",
-    "howler": "^2.1.1",
-    "morgan": "^1.9.1",
-    "noty": "^3.2.0-beta",
-    "polished": "^2.3.1",
-    "prop-types": "^15.6.2",
-    "react": "^16.8.6",
-    "react-append-head": "^1.0.16",
-    "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.0",
-    "react-jss": "^8.6.1",
-    "serve-index": "^1.9.1"
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "arwes": "^1.0.0-alpha.5",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.1.3",
+    "chonky": "^2.3.2",
+    "chonky-icon-fontawesome": "^2.3.2",
+    "marked-react": "^1.1.2",
+    "polished": "^4.2.2",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-bootstrap": "^2.4.0",
+    "react-dom": "^16.14.0",
+    "react-hot-toast": "^2.2.0",
+    "react-image-lightbox": "^5.1.4",
+    "react-pdf": "^5.7.2",
+    "react-photo-gallery": "^8.0.0",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "reactjs-popup": "^2.0.5",
+    "sass": "^1.52.1",
+    "three": "^0.141.0"
+  },
+  "scripts": {
+    "getdep": "npx install-peerdeps --dev @imaginary-cloud/eslint-config-react",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint ./ --ignore-path .formatignore",
+    "lint:fix": "eslint ./ --ignore-path .formatignore --fix",
+    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json,scss}\" --config .prettierrc --ignore-path .formatignore",
+    "format": "npm run prettier && npm run lint:fix",
+    "publish": "npm run format && npm run build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "all-contributors-cli": "^6.4.0",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-standard": "^4.0.0"
-  }
+    "@babel/eslint-parser": "^7.17.0",
+    "@imaginary-cloud/eslint-config-react": "^2.0.1",
+    "@imaginary-cloud/prettier-config": "^1.0.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2"
+  },
+  "prettier": "@imaginary-cloud/prettier-config"
 }

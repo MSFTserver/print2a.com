@@ -1,0 +1,122 @@
+.Browse {
+  padding: 30px;
+  width: 80vw;
+  margin: auto;
+
+  .browseBox {
+    height: 78vh;
+    overflow: hidden auto;
+  }
+
+  .browseContents {
+    border-radius: 2em;
+    height: 100%;
+  }
+
+  .chonky-chonkyRoot {
+    background: (rgba(0, 0, 0, 0));
+    border: none;
+    color: #2a9d00;
+  }
+
+  div[class^='folderBackSideTop-']::after {
+    border-color: rgba(0, 0, 0, 0);
+  }
+
+  div[class^='folderBackSideTop-'] {
+    background-color: #ff0000;
+    box-shadow: rgba(50, 50, 50, 0.4) 0px 0px 0px 999px inset;
+  }
+
+  div[class^='folderBackSideMid-'] {
+    background-color: #ff0000;
+    box-shadow: rgba(50, 50, 50, 0.4) 0px 0px 0px 999px inset;
+  }
+
+  div[class^='folderFrontSide-'] {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 0px 999px inset;
+    background-color: #ff0000;
+
+    div[class^='selectionIndicator-'] {
+      background: rgba(0, 0, 0, 0.14)
+        repeating-linear-gradient(
+          45deg,
+          rgba(0, 0, 0, 0.14),
+          rgba(0, 0, 0, 0.14) 10px,
+          rgba(0, 0, 0, 0.25) 0px,
+          rgba(0, 0, 0, 0.25) 20px
+        )
+        repeat scroll 0% 0%;
+    }
+  }
+
+  span[class^='gridFileEntryName-'] {
+    font-size: initial;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .MuiButton-label {
+    color: #2a9d00;
+  }
+
+  .MuiButtonBase-root {
+    margin: 0 5px;
+  }
+
+  // file path buttons
+  .MuiBreadcrumbs-li {
+    div[class^='buttonContainer-'] {
+      button {
+        color: #2a9d00 !important;
+      }
+    }
+  }
+
+  //file path divider text color
+  .MuiTypography-colorTextSecondary {
+    color: #2a9d00;
+  }
+
+  // search bar
+  .MuiInputBase-root {
+    color: #2a9d00;
+
+    .MuiOutlinedInput-notchedOutline {
+      border-color: #2a9d00;
+    }
+  }
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #195e00;
+  }
+
+  //empty file results
+  .chonky-fileListEmpty {
+    color: #2a9d00;
+
+    .chonky-fileListEmptyContent {
+      background-color: rgba(150, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 4px;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    padding: 10px;
+    width: 95vw;
+
+    .homePageContents {
+      border-radius: 0;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+  }
+}
+
+.frame-content {
+  padding: 1vh;
+  display: block;
+  text-align: center;
+}

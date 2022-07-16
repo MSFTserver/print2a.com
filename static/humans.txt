@@ -1,4 +1,0 @@
-/* humanstxt.org */
-
-/* TEAM */
-  MSFTserver
