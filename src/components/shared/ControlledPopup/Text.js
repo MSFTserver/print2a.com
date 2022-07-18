@@ -105,7 +105,7 @@ function TextPopup(props) {
               className="download"
               onClick={() =>
                 window.open(
-                  `https://print2a.com:5757/${popupFile.path}`,
+                  `https://api.print2a.com/${popupFile.path}`,
                   '_blank',
                 )
               }

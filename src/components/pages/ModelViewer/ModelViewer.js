@@ -398,9 +398,7 @@ function init(fileExt, fileData) {
 function ModelViewer(props) {
   useEffect(() => {
     async function fetchData() {
-      const print2aApiHost = 'https://print2a.com'
-      const print2aApiPort = '5757'
-      const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`
+      const print2aApiEndpoint = 'https://api.print2a.com'
       const queryString = window.location.search
       const urlParams = new URLSearchParams(queryString)
       const filePath = urlParams.get('fileLocation')
@@ -505,7 +503,7 @@ function ModelViewer(props) {
                     const filePath = urlParams.get('fileLocation')
 
                     window.open(
-                      `https://print2a.com:5757/print2a/${filePath}`,
+                      `https://api.print2a.com/print2a/${filePath}`,
                       '_blank',
                     )
                   }}

@@ -19,9 +19,7 @@ import { ChonkyIconFA } from 'chonky-icon-fontawesome'
 import ControlledPopup from '../../shared/ControlledPopup/ControlledPopup'
 setChonkyDefaults({ iconComponent: ChonkyIconFA })
 
-const print2aApiHost = 'https://print2a.com'
-const print2aApiPort = '5757'
-const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`
+const print2aApiEndpoint = 'https://api.print2a.com'
 
 // Render the file browser
 function ChonkyBrowse(props) {

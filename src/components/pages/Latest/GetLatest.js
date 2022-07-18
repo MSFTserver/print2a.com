@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Frame, Header, Heading, Link, Words, Row, Col } from 'arwes'
 
-const print2aApiHost = 'https://print2a.com'
-const print2aApiPort = '5757'
-const print2aApiEndpoint = `${print2aApiHost}:${print2aApiPort}`
+const print2aApiEndpoint = 'https://api.print2a.com'
 
 const GetLatest = (props) => {
   const [latest, setLatest] = useState([
