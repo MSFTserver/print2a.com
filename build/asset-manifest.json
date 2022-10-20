@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c109490c.css",
+    "main.js": "/static/js/main.10e0b638.js",
+    "static/media/background.png": "/static/media/background.1687a552179ee5decd0b.png",
+    "static/media/pdf.worker.js": "/static/media/pdf.worker.5a4781656f64092ca08b.js",
+    "static/media/typing.mp3": "/static/media/typing.b9949450c573abffd57b.mp3",
+    "static/media/deploy.mp3": "/static/media/deploy.91ae0b5808ac35ddfd65.mp3",
+    "static/media/start.mp3": "/static/media/start.ce43d884e3712261bc0c.mp3",
+    "static/media/glow.png": "/static/media/glow.31fafc1c17d199f4f7bd.png",
+    "static/media/expand.mp3": "/static/media/expand.010ac5f17a555fec07b5.mp3",
+    "static/media/fade.mp3": "/static/media/fade.12d59dc7935ba49518e5.mp3",
+    "static/media/hover.mp3": "/static/media/hover.71fb53bfaaa28947cb6b.mp3",
+    "static/media/click.mp3": "/static/media/click.0d1f6c945b597e940adf.mp3",
+    "index.html": "/index.html",
+    "main.c109490c.css.map": "/static/css/main.c109490c.css.map",
+    "main.10e0b638.js.map": "/static/js/main.10e0b638.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c109490c.css",
+    "static/js/main.10e0b638.js"
+  ]
+}
