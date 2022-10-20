@@ -49,10 +49,7 @@ function ImagePopup(props) {
             type="button"
             className="download"
             onClick={() =>
-              window.open(
-                `https://api.print2a.com/${popupFile.path}`,
-                '_blank',
-              )
+              window.open(`https://api.print2a.com/${popupFile.path}`, '_blank')
             }
           >
             <i className="fa-solid fa-circle-arrow-down"></i>

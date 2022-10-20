@@ -11,12 +11,16 @@ function NavBar(props) {
   const location = useLocation()
   const [menuActive, setMenuActive] = useState(false)
 
-  const mobileMenuClicked = () => {
+  const menuClicked = () => {
     if (!menuActive) {
       document.getElementById('navLinks').style.display = 'block'
+      document.getElementById('Menu-X').style.display = 'block'
+      document.getElementById('Menu-Bars').style.display = 'none'
       setMenuActive(true)
     } else {
       document.getElementById('navLinks').style.display = 'none'
+      document.getElementById('Menu-X').style.display = 'none'
+      document.getElementById('Menu-Bars').style.display = 'block'
       setMenuActive(false)
     }
   }
@@ -29,8 +33,9 @@ function NavBar(props) {
         <nav className="container-fluid navbar">
           <Heading>
             Print2a
-            <div id="mobileMenu" onClick={mobileMenuClicked}>
-              <li className="fa fa-bars" title="Menu" />
+            <div id="menu" onClick={menuClicked}>
+              <li className="fa fa-bars fa-2x" id="Menu-Bars" />
+              <li className="fa-solid fa-xmark fa-2x" id="Menu-X" />
             </div>
           </Heading>
           <Row className="row wrap mr-1" id="navLinks" col s={12}>
@@ -46,18 +51,6 @@ function NavBar(props) {
                 <Words className="navToText">Home</Words>
               </Button>
             </Link>
-            <Link to="/latest">
-              <Button
-                className="navToButton"
-                animate
-                disabled={showPage === 'latest'}
-                show={anim.entered}
-                onClick={() => setShowPage('latest')}
-                onMouseEnter={() => sounds.hover.play()}
-              >
-                <Words className="navToText">Latest</Words>
-              </Button>
-            </Link>
             <Link to="/links">
               <Button
                 className="navToButton"
@@ -68,6 +61,18 @@ function NavBar(props) {
                 onMouseEnter={() => sounds.hover.play()}
               >
                 <Words className="navToText">Links</Words>
+              </Button>
+            </Link>
+            <Link to="/latest">
+              <Button
+                className="navToButton"
+                animate
+                disabled={showPage === 'latest'}
+                show={anim.entered}
+                onClick={() => setShowPage('latest')}
+                onMouseEnter={() => sounds.hover.play()}
+              >
+                <Words className="navToText">Latest</Words>
               </Button>
             </Link>
             <Link to="/browse">
@@ -84,6 +89,38 @@ function NavBar(props) {
                 <Words className="navToText">Browse</Words>
               </Button>
             </Link>
+            <a
+              href="https://wiki.print2a.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="Wiki.print2a"
+            >
+              <Button
+                className="navToButton"
+                animate
+                show={anim.entered}
+                onMouseEnter={() => sounds.hover.play()}
+              >
+                <Words className="navToText">Wiki</Words>
+              </Button>
+            </a>
+            {/* <a
+              href="https://gear.print2a.com"
+              target="_blank"
+              rel="noopener"
+              aria-label="gear.print2a"
+            >
+              <Button
+                className="navToButton"
+                animate
+                layer="alert"
+                show={anim.entered}
+                disabled="true"
+                onMouseEnter={() => sounds.hover.play()}
+              >
+                <Words className="navToText">Gear</Words>
+              </Button>
+            </a> */}
           </Row>
         </nav>
       </Header>

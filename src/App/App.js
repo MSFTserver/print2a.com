@@ -141,6 +141,17 @@ function App() {
                       >
                         - Open Source -
                       </Link>
+                      <div className="Socials">
+                        <Link href="https://twitter.com/Print2a_repo">
+                          <i className="fa-brands fa-square-twitter fa-fw fa-2x"></i>
+                        </Link>
+                        <Link href="https://www.instagram.com/print2a/">
+                          <i className="fa-brands fa-square-instagram fa-fw fa-2x"></i>
+                        </Link>
+                        <Link href="mailto:print2arepo@gmail.com">
+                          <i className="fa-solid fa-square-envelope fa-fw fa-2x"></i>
+                        </Link>
+                      </div>
                       <Link
                         href="https://github.com/arwesjs/arwes"
                         alt="Arwes theme"
