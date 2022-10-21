@@ -115,7 +115,6 @@ function NavBar(props) {
                 animate
                 layer="alert"
                 show={anim.entered}
-                disabled="true"
                 onMouseEnter={() => sounds.hover.play()}
               >
                 <Words className="navToText">Gear</Words>
