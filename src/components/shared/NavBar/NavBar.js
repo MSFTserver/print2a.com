@@ -104,7 +104,7 @@ function NavBar(props) {
                 <Words className="navToText">Wiki</Words>
               </Button>
             </a>
-            {/* <a
+            <a
               href="https://gear.print2a.com"
               target="_blank"
               rel="noopener"
@@ -120,7 +120,7 @@ function NavBar(props) {
               >
                 <Words className="navToText">Gear</Words>
               </Button>
-            </a> */}
+            </a>
           </Row>
         </nav>
       </Header>
