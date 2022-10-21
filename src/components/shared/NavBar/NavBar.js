@@ -113,7 +113,6 @@ function NavBar(props) {
               <Button
                 className="navToButton"
                 animate
-                layer="alert"
                 show={anim.entered}
                 onMouseEnter={() => sounds.hover.play()}
               >
