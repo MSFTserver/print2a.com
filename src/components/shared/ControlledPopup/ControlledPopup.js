@@ -23,7 +23,7 @@ function ControlledPopup(props) {
   if (['md', 'txt', 'pdf'].includes(popupFile.ext?.toLowerCase())) {
     return <TextPopup {...props} />
   }
-  if (['png', 'jpg', 'jpeg'].includes(popupFile.ext?.toLowerCase())) {
+  if (['png', 'jpg'].includes(popupFile.ext?.toLowerCase())) {
     return <ImagePopup {...props} />
   }
   return (
